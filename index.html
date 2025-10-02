@@ -447,6 +447,18 @@
             50% { transform: translate(35px, 10px) scale(1.15); }
         }
 
+        @keyframes rainbowFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         /* Liquid Glass Animations */
         @keyframes liquidFlow {
             0% {
@@ -559,11 +571,16 @@
         .nav h1 {
             font-size: 2.5rem;
             font-weight: 300;
-            background: linear-gradient(45deg, #ffffff, #64b5f6, #ffffff);
+            background: linear-gradient(90deg, 
+                #ff0000, #ff4500, #ffa500, #ffff00, 
+                #9aff9a, #00ffff, #0080ff, #8a2be2, 
+                #ff1493, #ff0000);
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            animation: rainbowFlow 3s ease-in-out infinite;
         }
 
         /* Main content */
@@ -632,10 +649,15 @@
         .pgsc-info h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #64b5f6, #ffffff, #81c784);
+            background: linear-gradient(90deg, 
+                #ff0000, #ff4500, #ffa500, #ffff00, 
+                #9aff9a, #00ffff, #0080ff, #8a2be2, 
+                #ff1493, #ff0000);
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: rainbowFlow 4s ease-in-out infinite;
         }
 
         .pgsc-info p {
@@ -650,10 +672,15 @@
             text-align: center;
             font-size: 2.2rem;
             margin-bottom: 40px;
-            background: linear-gradient(45deg, #ffffff, #64b5f6);
+            background: linear-gradient(90deg, 
+                #ff0000, #ff4500, #ffa500, #ffff00, 
+                #9aff9a, #00ffff, #0080ff, #8a2be2, 
+                #ff1493, #ff0000);
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: rainbowFlow 3.5s ease-in-out infinite;
         }
 
         /* Scroll animation sections */
@@ -814,6 +841,15 @@
             font-weight: 600;
             margin-bottom: 5px;
             display: block;
+            background: linear-gradient(90deg, 
+                #ff0000, #ff4500, #ffa500, #ffff00, 
+                #9aff9a, #00ffff, #0080ff, #8a2be2, 
+                #ff1493, #ff0000);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowFlow 2s ease-in-out infinite;
         }
 
         .button-subtitle {
@@ -849,7 +885,15 @@
         .position-details h3 {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: #64b5f6;
+            background: linear-gradient(90deg, 
+                #ff0000, #ff4500, #ffa500, #ffff00, 
+                #9aff9a, #00ffff, #0080ff, #8a2be2, 
+                #ff1493, #ff0000);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowFlow 2.5s ease-in-out infinite;
         }
 
         .position-details p {
@@ -899,10 +943,15 @@
         .contact-info h3 {
             font-size: 2rem;
             margin-bottom: 30px;
-            background: linear-gradient(45deg, #ffffff, #64b5f6);
+            background: linear-gradient(90deg, 
+                #ff0000, #ff4500, #ffa500, #ffff00, 
+                #9aff9a, #00ffff, #0080ff, #8a2be2, 
+                #ff1493, #ff0000);
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: rainbowFlow 4.5s ease-in-out infinite;
         }
 
         .contact-grid {
