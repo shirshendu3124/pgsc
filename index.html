@@ -357,7 +357,7 @@
             }
         }
 
-        /* Enhanced Glowing lights background */
+        /* Glowing lights background */
         .glow-container {
             position: fixed;
             top: 0;
@@ -366,7 +366,6 @@
             height: 100%;
             z-index: 4;
             pointer-events: none;
-            overflow: hidden;
         }
 
         .glow-light {
@@ -376,142 +375,6 @@
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
             animation-direction: alternate;
-        }
-
-        /* Evening Brief Style Light Rays */
-        .light-ray {
-            position: absolute;
-            background: linear-gradient(90deg, 
-                transparent 0%,
-                rgba(255, 255, 255, 0.1) 20%,
-                rgba(100, 181, 246, 0.15) 50%,
-                rgba(255, 255, 255, 0.1) 80%,
-                transparent 100%);
-            height: 2px;
-            width: 100%;
-            transform-origin: left center;
-            animation: sweepLight 8s ease-in-out infinite;
-        }
-
-        .light-ray-1 {
-            top: 20%;
-            animation-delay: 0s;
-            opacity: 0.6;
-        }
-
-        .light-ray-2 {
-            top: 35%;
-            animation-delay: 2s;
-            opacity: 0.4;
-        }
-
-        .light-ray-3 {
-            top: 50%;
-            animation-delay: 4s;
-            opacity: 0.7;
-        }
-
-        .light-ray-4 {
-            top: 65%;
-            animation-delay: 6s;
-            opacity: 0.5;
-        }
-
-        /* Spotlight effect */
-        .spotlight {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, 
-                rgba(100, 181, 246, 0.2) 0%,
-                rgba(100, 181, 246, 0.1) 30%,
-                rgba(255, 255, 255, 0.05) 60%,
-                transparent 100%);
-            filter: blur(20px);
-            animation: spotlight 12s ease-in-out infinite;
-        }
-
-        .spotlight-1 {
-            top: 10%;
-            left: 20%;
-            animation-delay: 0s;
-        }
-
-        .spotlight-2 {
-            bottom: 20%;
-            right: 15%;
-            animation-delay: 4s;
-        }
-
-        .spotlight-3 {
-            top: 40%;
-            right: 30%;
-            animation-delay: 8s;
-        }
-
-        /* Particle lights */
-        .particle-light {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(100, 181, 246, 0.8);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(100, 181, 246, 0.6);
-            animation: particleFloat 15s linear infinite;
-        }
-
-        @keyframes sweepLight {
-            0% {
-                transform: translateX(-100%) rotate(-5deg);
-                opacity: 0;
-            }
-            20% {
-                opacity: 1;
-            }
-            80% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100vw) rotate(5deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes spotlight {
-            0%, 100% {
-                transform: scale(1) translate(0, 0);
-                opacity: 0.3;
-            }
-            25% {
-                transform: scale(1.2) translate(20px, -15px);
-                opacity: 0.6;
-            }
-            50% {
-                transform: scale(0.8) translate(-15px, 10px);
-                opacity: 0.8;
-            }
-            75% {
-                transform: scale(1.1) translate(10px, -20px);
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(50px);
-                opacity: 0;
-            }
         }
 
         .glow-1 {
@@ -729,36 +592,9 @@
                 0 8px 32px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2),
                 0 0 0 1px rgba(255, 255, 255, 0.05),
-                0 0 50px rgba(100, 181, 246, 0.15);
+                0 0 0 1px rgba(255, 255, 255, 0.05);
             position: relative;
             overflow: hidden;
-            /* Enhanced lighting effect */
-            animation: sectionGlow 8s ease-in-out infinite alternate;
-        }
-
-        /* Enhanced section glow animation */
-        @keyframes sectionGlow {
-            0% {
-                box-shadow: 
-                    0 8px 32px rgba(0, 0, 0, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                    0 0 0 1px rgba(255, 255, 255, 0.05),
-                    0 0 30px rgba(100, 181, 246, 0.1);
-            }
-            50% {
-                box-shadow: 
-                    0 8px 32px rgba(0, 0, 0, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                    0 0 0 1px rgba(255, 255, 255, 0.08),
-                    0 0 60px rgba(100, 181, 246, 0.2);
-            }
-            100% {
-                box-shadow: 
-                    0 8px 32px rgba(0, 0, 0, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-                    0 0 0 1px rgba(255, 255, 255, 0.06),
-                    0 0 80px rgba(100, 181, 246, 0.25);
-            }
         }
 
         .pgsc-info::before {
@@ -1332,33 +1168,13 @@
         <div class="parallax-bg parallax-layer-1"></div>
     </div>
 
-    <!-- Evening Brief Style Light Effects -->
+    <!-- Glowing lights background -->
     <div class="glow-container">
-        <!-- Light Rays -->
-        <div class="light-ray light-ray-1"></div>
-        <div class="light-ray light-ray-2"></div>
-        <div class="light-ray light-ray-3"></div>
-        <div class="light-ray light-ray-4"></div>
-        
-        <!-- Spotlights -->
-        <div class="spotlight spotlight-1"></div>
-        <div class="spotlight spotlight-2"></div>
-        <div class="spotlight spotlight-3"></div>
-        
-        <!-- Existing glow lights -->
         <div class="glow-light glow-1"></div>
         <div class="glow-light glow-2"></div>
         <div class="glow-light glow-3"></div>
         <div class="glow-light glow-4"></div>
         <div class="glow-light glow-5"></div>
-        
-        <!-- Floating particle lights -->
-        <div class="particle-light" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="particle-light" style="left: 25%; animation-delay: 3s;"></div>
-        <div class="particle-light" style="left: 40%; animation-delay: 6s;"></div>
-        <div class="particle-light" style="left: 60%; animation-delay: 9s;"></div>
-        <div class="particle-light" style="left: 75%; animation-delay: 12s;"></div>
-        <div class="particle-light" style="left: 90%; animation-delay: 2s;"></div>
     </div>
 
     <!-- Header -->
