@@ -12,9 +12,7 @@
         }
 
         body {
-            background: 
-                linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(26, 26, 46, 0.85), rgba(22, 33, 62, 0.85)),
-                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==') center/cover no-repeat;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(26, 26, 46, 0.85), rgba(22, 33, 62, 0.85));
             color: #ffffff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
@@ -352,6 +350,56 @@
             50% { transform: translate(35px, 10px) scale(1.15); }
         }
 
+        /* Liquid Glass Animations */
+        @keyframes liquidFlow {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes liquidFlowHover {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes liquidGlow {
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+                filter: blur(6px) hue-rotate(0deg);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.02);
+                filter: blur(10px) hue-rotate(30deg);
+            }
+            100% {
+                opacity: 0.4;
+                transform: scale(1);
+                filter: blur(8px) hue-rotate(60deg);
+            }
+        }
+
         /* Header styles */
         .header {
             position: relative;
@@ -399,7 +447,7 @@
         /* Make PGSC logo 10% bigger */
         .pgsc-logo {
             height: 69px;
-            max-width: 69px;
+            max-width: 100px;
         }
 
         .iit-logo:hover, .pgsc-logo:hover {
@@ -433,11 +481,54 @@
         .pgsc-info {
             margin-bottom: 60px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.03);
+            background: linear-gradient(135deg, 
+                rgba(100, 181, 246, 0.12) 0%,
+                rgba(255, 255, 255, 0.08) 25%,
+                rgba(129, 199, 132, 0.10) 50%,
+                rgba(255, 255, 255, 0.06) 75%,
+                rgba(100, 181, 246, 0.12) 100%);
             padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            backdrop-filter: blur(25px) saturate(1.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pgsc-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%);
+            animation: liquidFlow 4s ease-in-out infinite;
+        }
+
+        .pgsc-info::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(100, 181, 246, 0.3),
+                rgba(129, 199, 132, 0.2),
+                rgba(100, 181, 246, 0.3));
+            border-radius: 25px;
+            z-index: -1;
+            filter: blur(8px);
+            opacity: 0.6;
+            animation: liquidGlow 3s ease-in-out infinite alternate;
         }
 
         .pgsc-info h2 {
@@ -527,17 +618,22 @@
             flex: 0 0 300px;
         }
 
-        /* Glass morphism buttons */
+        /* Liquid Glass morphism buttons */
         .glass-button {
             width: 100%;
             height: 120px;
-            background: rgba(22, 33, 62, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
+            background: linear-gradient(135deg, 
+                rgba(22, 33, 62, 0.12) 0%,
+                rgba(100, 181, 246, 0.12) 25%,
+                rgba(255, 255, 255, 0.08) 50%,
+                rgba(22, 33, 62, 0.10) 75%,
+                rgba(100, 181, 246, 0.12) 100%);
+            backdrop-filter: blur(25px) saturate(1.3);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 25px;
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -545,7 +641,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.08);
         }
 
         .glass-button::before {
@@ -555,25 +654,61 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 255, 255, 0.25) 30%,
+                rgba(100, 181, 246, 0.2) 50%,
+                rgba(255, 255, 255, 0.25) 70%,
+                transparent 100%);
+            animation: liquidFlow 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .glass-button::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, 
+                rgba(100, 181, 246, 0.4),
+                rgba(22, 33, 62, 0.3),
+                rgba(100, 181, 246, 0.4));
+            border-radius: 25px;
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.7;
+            animation: liquidGlow 2.5s ease-in-out infinite alternate;
         }
 
         .glass-button:hover::before {
-            left: 100%;
+            animation: liquidFlowHover 0.8s ease-out;
         }
 
         .glass-button:hover {
-            transform: translateY(-5px);
-            background: rgba(22, 33, 62, 0.8);
-            border-color: rgba(100, 181, 246, 0.5);
-            box-shadow: 0 15px 50px rgba(100, 181, 246, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            background: linear-gradient(135deg, 
+                rgba(100, 181, 246, 0.25) 0%,
+                rgba(255, 255, 255, 0.15) 25%,
+                rgba(22, 33, 62, 0.8) 50%,
+                rgba(100, 181, 246, 0.3) 100%);
+            border-color: rgba(100, 181, 246, 0.6);
+            box-shadow: 
+                0 20px 60px rgba(100, 181, 246, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 0 0 1px rgba(100, 181, 246, 0.2);
         }
 
         .glass-button.active {
-            background: rgba(100, 181, 246, 0.2);
-            border-color: rgba(100, 181, 246, 0.6);
-            box-shadow: 0 0 30px rgba(100, 181, 246, 0.4);
+            background: linear-gradient(135deg, 
+                rgba(100, 181, 246, 0.3) 0%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(100, 181, 246, 0.4) 100%);
+            border-color: rgba(100, 181, 246, 0.7);
+            box-shadow: 
+                0 0 40px rgba(100, 181, 246, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
 
         .button-text {
@@ -590,14 +725,59 @@
             display: block;
         }
 
-        /* Position details */
+        /* Position details with liquid glass */
         .position-details {
             flex: 1;
-            background: rgba(22, 33, 62, 0.5);
+            background: linear-gradient(135deg, 
+                rgba(22, 33, 62, 0.12) 0%,
+                rgba(100, 181, 246, 0.12) 30%,
+                rgba(255, 255, 255, 0.08) 50%,
+                rgba(22, 33, 62, 0.10) 70%,
+                rgba(129, 199, 132, 0.10) 100%);
             padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(25px) saturate(1.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 10px 35px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .position-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 255, 255, 0.12) 50%,
+                transparent 100%);
+            animation: liquidFlow 5s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .position-details::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(100, 181, 246, 0.2),
+                rgba(129, 199, 132, 0.15),
+                rgba(100, 181, 246, 0.2));
+            border-radius: 20px;
+            z-index: -1;
+            filter: blur(6px);
+            opacity: 0.5;
+            animation: liquidGlow 4s ease-in-out infinite alternate;
         }
 
         .position-details h3 {
@@ -668,11 +848,65 @@
         }
 
         .contact-item {
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(100, 181, 246, 0.15) 25%,
+                rgba(22, 33, 62, 0.3) 50%,
+                rgba(129, 199, 132, 0.1) 75%,
+                rgba(255, 255, 255, 0.08) 100%);
             padding: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            backdrop-filter: blur(25px) saturate(1.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 255, 255, 0.15) 50%,
+                transparent 100%);
+            animation: liquidFlow 6s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .contact-item::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(100, 181, 246, 0.25),
+                rgba(129, 199, 132, 0.2),
+                rgba(100, 181, 246, 0.25));
+            border-radius: 18px;
+            z-index: -1;
+            filter: blur(8px);
+            opacity: 0.4;
+            animation: liquidGlow 3.5s ease-in-out infinite alternate;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 15px 45px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 0 0 1px rgba(100, 181, 246, 0.3);
         }
 
         .contact-item strong {
@@ -754,7 +988,7 @@
 
             .pgsc-logo {
                 height: 44px;
-                max-width: 44px;
+                max-width: 65px;
             }
         }
 
@@ -791,7 +1025,7 @@
 
             .pgsc-logo {
                 height: 33px;
-                max-width: 33px;
+                max-width: 50px;
             }
 
             .main-content {
@@ -826,43 +1060,6 @@
     <!-- 3D Parallax Background -->
     <div class="parallax-container" id="parallax-container">
         <div class="parallax-bg parallax-layer-1"></div>
-    </div>
-
-    <!-- Animated background text -->
-    <div class="background-text">
-        <div class="flowing-text flowing-text-1">
-            Founded in 1951, IIT Kharagpur stands as the first and oldest of the Indian Institutes of Technology.
-        </div>
-        <div class="flowing-text flowing-text-2">
-            Born from the vision of Pandit Nehru to establish institutions of national importance.
-        </div>
-        <div class="flowing-text flowing-text-3">
-            IIT Kharagpur has been a beacon of excellence in technical education and research for over seven decades.
-        </div>
-        <div class="flowing-text flowing-text-4">
-            The institute has produced thousands of engineers, scientists, entrepreneurs, and leaders who have shaped the world.
-        </div>
-        <div class="flowing-text flowing-text-5">
-            From the historic Hijli Detention Camp to becoming India's premier technological institution.
-        </div>
-        <div class="flowing-text flowing-text-6">
-            IIT Kharagpur continues its legacy of innovation and excellence in the 21st century.
-        </div>
-        <div class="flowing-text flowing-text-7">
-            The campus spans over 2100 acres, making it one of the largest educational campuses in the world.
-        </div>
-        <div class="flowing-text flowing-text-8">
-            With 19 departments and 13 schools of excellence, IIT Kharagpur leads in multidisciplinary research.
-        </div>
-    </div>
-
-    <!-- Glowing lights background -->
-    <div class="glow-container">
-        <div class="glow-light glow-1"></div>
-        <div class="glow-light glow-2"></div>
-        <div class="glow-light glow-3"></div>
-        <div class="glow-light glow-4"></div>
-        <div class="glow-light glow-5"></div>
     </div>
 
     <!-- Header -->
