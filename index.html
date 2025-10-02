@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGSC Secretary Nominations - IIT Kharagpur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: 
+                linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(26, 26, 46, 0.85), rgba(22, 33, 62, 0.85)),
+                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==') center/cover no-repeat;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 3D Parallax Background Container */
+        .parallax-container {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            z-index: 0;
+            pointer-events: none;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        /* Background image with 3D effect */
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/Gemini_Generated_Image_7tioye7tioye7tio.png') center/cover no-repeat;
+            opacity: 0.25;
+            filter: brightness(0.8) contrast(1.1);
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        /* Multiple depth layers for enhanced 3D effect */
+        .parallax-layer-1 {
+            transform: translateZ(-50px) scale(1.05);
+            opacity: 0.15;
+        }
+
+        .parallax-layer-2 {
+            transform: translateZ(-25px) scale(1.025);
+            opacity: 0.2;
+        }
+
+        .parallax-layer-3 {
+            transform: translateZ(0px);
+            opacity: 0.25;
+        }
+
+        /* Background flowing text */
+        .background-text {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 3;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .flowing-text {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 300;
+            width: max-content;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .flowing-text-1 {
+            left: 10%;
+            animation: flowTextUp1 25s linear infinite;
+            animation-delay: 0s;
+        }
+
+        .flowing-text-2 {
+            left: 30%;
+            animation: flowTextUp2 28s linear infinite;
+            animation-delay: 3s;
+        }
+
+        .flowing-text-3 {
+            left: 50%;
+            animation: flowTextUp3 30s linear infinite;
+            animation-delay: 6s;
+        }
+
+        .flowing-text-4 {
+            left: 20%;
+            animation: flowTextUp4 32s linear infinite;
+            animation-delay: 9s;
+        }
+
+        .flowing-text-5 {
+            left: 60%;
+            animation: flowTextUp5 27s linear infinite;
+            animation-delay: 12s;
+        }
+
+        .flowing-text-6 {
+            left: 5%;
+            animation: flowTextUp6 29s linear infinite;
+            animation-delay: 15s;
+        }
+
+        .flowing-text-7 {
+            left: 40%;
+            animation: flowTextUp7 31s linear infinite;
+            animation-delay: 18s;
+        }
+
+        .flowing-text-8 {
+            left: 25%;
+            animation: flowTextUp8 26s linear infinite;
+            animation-delay: 21s;
+        }
+
+        @keyframes flowTextUp1 {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flowTextUp2 {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flowTextUp3 {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flowTextUp4 {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flowTextUp5 {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flowTextUp6 {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flowTextUp7 {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flowTextUp8 {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        /* Glowing lights background */
+        .glow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .glow-light {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        .glow-1 {
+            width: 200px;
+            height: 200px;
+            background: rgba(100, 200, 255, 0.1);
+            top: 20%;
+            left: 10%;
+            animation: float1 8s infinite;
+        }
+
+        .glow-2 {
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 100, 200, 0.08);
+            top: 60%;
+            right: 20%;
+            animation: float2 6s infinite;
+        }
+
+        .glow-3 {
+            width: 120px;
+            height: 120px;
+            background: rgba(200, 255, 100, 0.06);
+            top: 40%;
+            left: 60%;
+            animation: float3 10s infinite;
+        }
+
+        .glow-4 {
+            width: 180px;
+            height: 180px;
+            background: rgba(150, 100, 255, 0.07);
+            bottom: 20%;
+            left: 30%;
+            animation: float4 7s infinite;
+        }
+
+        .glow-5 {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 200, 100, 0.05);
+            top: 10%;
+            right: 40%;
+            animation: float5 9s infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -20px) scale(1.1); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-25px, 15px) scale(0.9); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, 25px) scale(1.2); }
+        }
+
+        @keyframes float4 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-15px, -30px) scale(0.8); }
+        }
+
+        @keyframes float5 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(35px, 10px) scale(1.15); }
+        }
+
+        /* Header styles */
+        .header {
+            position: relative;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container {
+            flex: 0 0 auto;
+        }
+
+        .left-logo {
+            margin-right: 30px;
+        }
+
+        .right-logo {
+            margin-left: 30px;
+        }
+
+        .nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .iit-logo, .pgsc-logo {
+            height: 60px;
+            width: auto;
+            max-width: 60px;
+            object-fit: contain;
+            filter: 
+                brightness(0) 
+                invert(1) 
+                drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))
+                drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+            transition: all 0.3s ease;
+        }
+
+        /* Make PGSC logo 10% bigger */
+        .pgsc-logo {
+            height: 69px;
+            max-width: 69px;
+        }
+
+        .iit-logo:hover, .pgsc-logo:hover {
+            filter: 
+                brightness(0) 
+                invert(1) 
+                drop-shadow(0 0 15px rgba(255, 255, 255, 0.5))
+                drop-shadow(0 0 25px rgba(100, 181, 246, 0.3));
+            transform: scale(1.05);
+        }
+
+        .nav h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            background: linear-gradient(45deg, #ffffff, #64b5f6, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Main content */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pgsc-info {
+            margin-bottom: 60px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pgsc-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #64b5f6, #ffffff, #81c784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pgsc-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Secretary positions */
+        .secretary-positions h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #ffffff, #64b5f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Scroll animation sections */
+        .scroll-animation-section {
+            transform: translateZ(0);
+            will-change: transform, opacity;
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-animation-section .position-button-container {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease;
+            transform: scale(0.9);
+            opacity: 0.7;
+        }
+
+        .scroll-animation-section .position-details {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease;
+            transform: scale(0.9);
+            opacity: 0.7;
+        }
+
+        /* Button zoom in state */
+        .scroll-animation-section.button-zoom-in .position-button-container {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .scroll-animation-section.button-zoom-in .position-details {
+            transform: scale(0.9);
+            opacity: 0.5;
+        }
+
+        /* Details zoom in state */
+        .scroll-animation-section.details-zoom-in .position-button-container {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+
+        .scroll-animation-section.details-zoom-in .position-details {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        /* Active/focused state */
+        .scroll-animation-section.active .position-button-container,
+        .scroll-animation-section.active .position-details {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .position-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            gap: 40px;
+            min-height: 200px;
+        }
+
+        .position-button-container {
+            flex: 0 0 300px;
+        }
+
+        /* Glass morphism buttons */
+        .glass-button {
+            width: 100%;
+            height: 120px;
+            background: rgba(22, 33, 62, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .glass-button:hover::before {
+            left: 100%;
+        }
+
+        .glass-button:hover {
+            transform: translateY(-5px);
+            background: rgba(22, 33, 62, 0.8);
+            border-color: rgba(100, 181, 246, 0.5);
+            box-shadow: 0 15px 50px rgba(100, 181, 246, 0.2);
+        }
+
+        .glass-button.active {
+            background: rgba(100, 181, 246, 0.2);
+            border-color: rgba(100, 181, 246, 0.6);
+            box-shadow: 0 0 30px rgba(100, 181, 246, 0.4);
+        }
+
+        .button-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .button-subtitle {
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.8;
+            display: block;
+        }
+
+        /* Position details */
+        .position-details {
+            flex: 1;
+            background: rgba(22, 33, 62, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .position-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #64b5f6;
+        }
+
+        .position-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .position-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .position-details li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .position-details li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #64b5f6;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 10;
+            margin-top: 80px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ffffff, #64b5f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-item strong {
+            color: #64b5f6;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contact-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .contact-link:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            text-decoration: underline;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-link:active {
+            transform: translateY(0px);
+            box-shadow: 0 2px 8px rgba(100, 181, 246, 0.3);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .logo-container {
+                margin: 0;
+            }
+
+            .left-logo {
+                order: 1;
+                margin-bottom: 15px;
+            }
+
+            .nav {
+                order: 2;
+                margin-bottom: 15px;
+            }
+
+            .right-logo {
+                order: 3;
+                margin-bottom: 0;
+            }
+
+            .nav h1 {
+                font-size: 2rem;
+            }
+
+            .iit-logo, .pgsc-logo {
+                height: 50px;
+                max-width: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 15px;
+            }
+
+            .nav h1 {
+                font-size: 1.5rem;
+            }
+
+            .iit-logo, .pgsc-logo {
+                height: 40px;
+                max-width: 40px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .position-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .position-button-container {
+                flex: none;
+                width: 100%;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pgsc-info {
+                padding: 20px;
+            }
+
+            .pgsc-info h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Parallax Background -->
+    <div class="parallax-container" id="parallax-container">
+        <div class="parallax-bg parallax-layer-1"></div>
+        <div class="parallax-bg parallax-layer-2"></div>
+        <div class="parallax-bg parallax-layer-3"></div>
+    </div>
+
+    <!-- Animated background text -->
+    <div class="background-text">
+        <div class="flowing-text flowing-text-1">
+            Founded in 1951, IIT Kharagpur stands as the first and oldest of the Indian Institutes of Technology.
+        </div>
+        <div class="flowing-text flowing-text-2">
+            Born from the vision of Pandit Nehru to establish institutions of national importance.
+        </div>
+        <div class="flowing-text flowing-text-3">
+            IIT Kharagpur has been a beacon of excellence in technical education and research for over seven decades.
+        </div>
+        <div class="flowing-text flowing-text-4">
+            The institute has produced thousands of engineers, scientists, entrepreneurs, and leaders who have shaped the world.
+        </div>
+        <div class="flowing-text flowing-text-5">
+            From the historic Hijli Detention Camp to becoming India's premier technological institution.
+        </div>
+        <div class="flowing-text flowing-text-6">
+            IIT Kharagpur continues its legacy of innovation and excellence in the 21st century.
+        </div>
+        <div class="flowing-text flowing-text-7">
+            The campus spans over 2100 acres, making it one of the largest educational campuses in the world.
+        </div>
+        <div class="flowing-text flowing-text-8">
+            With 19 departments and 13 schools of excellence, IIT Kharagpur leads in multidisciplinary research.
+        </div>
+    </div>
+
+    <!-- Glowing lights background -->
+    <div class="glow-container">
+        <div class="glow-light glow-1"></div>
+        <div class="glow-light glow-2"></div>
+        <div class="glow-light glow-3"></div>
+        <div class="glow-light glow-4"></div>
+        <div class="glow-light glow-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container left-logo">
+            <!-- IIT KGP Logo -->
+            <img src="images/iitkgp_logo.svg.png" alt="IIT Kharagpur Logo" class="iit-logo">
+        </div>
+        <nav class="nav">
+            <h1>PGSC Secretary Nominations</h1>
+        </nav>
+        <div class="logo-container right-logo">
+            <img src="images/Untitled_design-removebg-preview.png" alt="PGSC Logo" class="pgsc-logo">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- PGSC Information Section -->
+        <section class="pgsc-info">
+            <h2>Post Graduate Students' Council (PGSC)</h2>
+            <p>The Post Graduate Students' Council (PGSC) at IIT Kharagpur serves as the representative body for all postgraduate students in the institute. Established to ensure effective governance and representation of postgraduate student interests, the PGSC works tirelessly to enhance the academic, research, and overall campus experience for all PG students.</p>
+            <p>The council comprises dedicated secretaries who oversee various aspects of postgraduate life, from academic excellence and research initiatives to technological innovation, media communications, and strategic coordination. Each secretary position plays a crucial role in maintaining the high standards and collaborative spirit that IIT Kharagpur is known for.</p>
+        </section>
+
+        <!-- Secretary Positions -->
+        <section class="secretary-positions">
+            <h2>Secretary Positions</h2>
+            
+            <!-- Secretary 1: Academic and Research -->
+            <div class="position-row scroll-animation-section" data-section="1">
+                <div class="position-button-container">
+                    <button class="glass-button" data-position="academic">
+                        <span class="button-text">Secretary</span>
+                        <span class="button-subtitle">Academic and Research</span>
+                    </button>
+                </div>
+                <div class="position-details" id="academic-details">
+                    <h3>Secretary (Academic and Research)</h3>
+                    <p>The Secretary for Academic and Research is responsible for overseeing all academic matters concerning postgraduate students. This includes liaising with academic departments, facilitating research opportunities, organizing academic workshops and seminars, and ensuring that the academic needs of PG students are met.</p>
+                    <ul>
+                        <li>Coordinate with academic departments and faculty</li>
+                        <li>Facilitate research collaborations and opportunities</li>
+                        <li>Organize academic workshops, seminars, and conferences</li>
+                        <li>Address academic grievances and concerns</li>
+                        <li>Promote interdisciplinary research initiatives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Secretary 2: Technology and Innovation -->
+            <div class="position-row scroll-animation-section" data-section="2">
+                <div class="position-button-container">
+                    <button class="glass-button" data-position="technology">
+                        <span class="button-text">Secretary</span>
+                        <span class="button-subtitle">Technology and Innovation</span>
+                    </button>
+                </div>
+                <div class="position-details" id="technology-details">
+                    <h3>Secretary (Technology and Innovation)</h3>
+                    <p>The Secretary for Technology and Innovation focuses on promoting technological advancement and innovative thinking among postgraduate students. This role involves organizing hackathons, tech talks, startup incubation programs, and fostering a culture of innovation within the institute.</p>
+                    <ul>
+                        <li>Organize hackathons, coding competitions, and tech festivals</li>
+                        <li>Facilitate startup incubation and entrepreneurship programs</li>
+                        <li>Coordinate with industry partners for technology collaborations</li>
+                        <li>Promote innovation labs and maker spaces</li>
+                        <li>Support patent filing and intellectual property initiatives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Secretary 3: Media and Communications -->
+            <div class="position-row scroll-animation-section" data-section="3">
+                <div class="position-button-container">
+                    <button class="glass-button" data-position="media">
+                        <span class="button-text">Secretary</span>
+                        <span class="button-subtitle">Media and Communications</span>
+                    </button>
+                </div>
+                <div class="position-details" id="media-details">
+                    <h3>Secretary (Media and Communications)</h3>
+                    <p>The Secretary for Media and Communications manages all internal and external communications for the PGSC. This includes maintaining social media presence, publishing newsletters, coordinating with media outlets, and ensuring effective communication between the council and the student body.</p>
+                    <ul>
+                        <li>Manage PGSC social media accounts and digital presence</li>
+                        <li>Publish regular newsletters and updates</li>
+                        <li>Coordinate with campus and external media</li>
+                        <li>Design promotional materials and communications</li>
+                        <li>Maintain transparency through regular reporting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Secretary 4: Coordination and Strategy -->
+            <div class="position-row scroll-animation-section" data-section="4">
+                <div class="position-button-container">
+                    <button class="glass-button" data-position="strategy">
+                        <span class="button-text">Secretary</span>
+                        <span class="button-subtitle">Coordination and Strategy</span>
+                    </button>
+                </div>
+                <div class="position-details" id="strategy-details">
+                    <h3>Secretary (Coordination and Strategy)</h3>
+                    <p>The Secretary for Coordination and Strategy oversees the overall strategic planning and coordination of PGSC activities. This role involves policy development, inter-departmental coordination, event planning, and ensuring smooth functioning of all council operations.</p>
+                    <ul>
+                        <li>Develop long-term strategic plans for PGSC initiatives</li>
+                        <li>Coordinate between different secretary positions</li>
+                        <li>Plan and execute major events and festivals</li>
+                        <li>Facilitate communication with institute administration</li>
+                        <li>Monitor and evaluate council performance and initiatives</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <strong>Email:</strong> <a href="mailto:pgrep@hijli.iitkgp.ac.in" class="contact-link">pgrep@hijli.iitkgp.ac.in</a>
+                </div>
+                <div class="contact-item">
+                    <strong>WhatsApp:</strong> <a href="tel:+919064001633" class="contact-link">+91-9064001633</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive button functionality
+        document.querySelectorAll('.glass-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.glass-button').forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+            });
+        });
+
+        // Scroll-based zoom animation
+        function handleScrollAnimation() {
+            const scrollTop = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            
+            document.querySelectorAll('.scroll-animation-section').forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = rect.top;
+                const sectionHeight = rect.height;
+                const sectionCenter = sectionTop + sectionHeight / 2;
+                
+                // Remove all animation classes first
+                section.classList.remove('button-zoom-in', 'details-zoom-in', 'active');
+                
+                // Check if section is in viewport
+                if (sectionTop < windowHeight && rect.bottom > 0) {
+                    // Calculate scroll progress through the section
+                    const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+                    const normalizedProgress = Math.max(0, Math.min(1, scrollProgress));
+                    
+                    // Define animation phases based on scroll progress
+                    if (normalizedProgress >= 0.1 && normalizedProgress < 0.3) {
+                        // Phase 1: Button zoom in
+                        section.classList.add('button-zoom-in');
+                    } else if (normalizedProgress >= 0.3 && normalizedProgress < 0.5) {
+                        // Phase 2: Button zoom out (no special class, returns to default)
+                        // This is handled by the absence of zoom classes
+                    } else if (normalizedProgress >= 0.5 && normalizedProgress < 0.7) {
+                        // Phase 3: Details zoom in
+                        section.classList.add('details-zoom-in');
+                    } else if (normalizedProgress >= 0.7 && normalizedProgress < 0.9) {
+                        // Phase 4: Details zoom out (no special class, returns to default)
+                        // This is handled by the absence of zoom classes
+                    } else if (normalizedProgress >= 0.9) {
+                        // Phase 5: Both at normal size (active state)
+                        section.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Smooth animation with requestAnimationFrame
+        let animationTicking = false;
+        function requestAnimationTick() {
+            if (!animationTicking) {
+                requestAnimationFrame(handleScrollAnimation);
+                animationTicking = true;
+            }
+        }
+        
+        function onScrollAnimation() {
+            animationTicking = false;
+            requestAnimationTick();
+        }
+        
+        // Initialize scroll animation
+        window.addEventListener('scroll', onScrollAnimation, { passive: true });
+        window.addEventListener('resize', onScrollAnimation, { passive: true });
+        
+        // Initial call
+        handleScrollAnimation();
+
+        // 3D Parallax Effect
+        const parallaxContainer = document.getElementById('parallax-container');
+        const parallaxLayers = document.querySelectorAll('.parallax-bg');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        
+        // Mouse movement handler
+        function handleMouseMove(e) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            mouseX = (e.clientX - centerX) / centerX;
+            mouseY = (e.clientY - centerY) / centerY;
+        }
+        
+        // Device orientation handler for mobile
+        function handleOrientation(e) {
+            if (e.beta !== null && e.gamma !== null) {
+                mouseX = e.gamma / 30; // Normalize to -1 to 1
+                mouseY = e.beta / 30;
+            }
+        }
+        
+        // Smooth animation function
+        function animateParallax() {
+            // Smooth interpolation for fluid movement
+            currentX += (mouseX - currentX) * 0.05;
+            currentY += (mouseY - currentY) * 0.05;
+            
+            // Apply transforms to each layer with different intensities
+            parallaxLayers.forEach((layer, index) => {
+                const intensity = (index + 1) * 0.5; // Different movement speeds for depth
+                const rotateX = currentY * intensity * 2;
+                const rotateY = -currentX * intensity * 2;
+                const translateX = currentX * intensity * 10;
+                const translateY = currentY * intensity * 10;
+                
+                let baseTransform = '';
+                if (layer.classList.contains('parallax-layer-1')) {
+                    baseTransform = 'translateZ(-50px) scale(1.05)';
+                } else if (layer.classList.contains('parallax-layer-2')) {
+                    baseTransform = 'translateZ(-25px) scale(1.025)';
+                } else {
+                    baseTransform = 'translateZ(0px)';
+                }
+                
+                layer.style.transform = `${baseTransform} 
+                    rotateX(${rotateX}deg) 
+                    rotateY(${rotateY}deg) 
+                    translateX(${translateX}px) 
+                    translateY(${translateY}px)`;
+            });
+            
+            requestAnimationFrame(animateParallax);
+        }
+        
+        // Event listeners
+        document.addEventListener('mousemove', handleMouseMove, { passive: true });
+        
+        // Add device orientation support for mobile
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+        }
+        
+        // Reset position when mouse leaves
+        document.addEventListener('mouseleave', () => {
+            mouseX = 0;
+            mouseY = 0;
+        });
+        
+        // Start the parallax animation
+        animateParallax();
+    </script>
+</body>
+</html>
