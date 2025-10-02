@@ -51,18 +51,18 @@
 
         /* Multiple depth layers for enhanced 3D effect */
         .parallax-layer-1 {
-            transform: translateZ(-50px) scale(1.05);
+            transform: translateZ(-100px);
             opacity: 0.15;
         }
 
         .parallax-layer-2 {
-            transform: translateZ(-25px) scale(1.025);
+            transform: translateZ(-50px);
             opacity: 0.2;
         }
 
         .parallax-layer-3 {
             transform: translateZ(0px);
-            opacity: 0.25;
+            opacity: 0.3;
         }
 
         /* Background flowing text */
@@ -1107,29 +1107,27 @@
         // Smooth animation function
         function animateParallax() {
             // Smooth interpolation for fluid movement
-            currentX += (mouseX - currentX) * 0.05;
-            currentY += (mouseY - currentY) * 0.05;
+            currentX += (mouseX - currentX) * 0.08;
+            currentY += (mouseY - currentY) * 0.08;
             
             // Apply transforms to each layer with different intensities
             parallaxLayers.forEach((layer, index) => {
-                const intensity = (index + 1) * 0.5; // Different movement speeds for depth
-                const rotateX = currentY * intensity * 2;
-                const rotateY = -currentX * intensity * 2;
-                const translateX = currentX * intensity * 10;
-                const translateY = currentY * intensity * 10;
+                // Increased movement intensity for more depth effect
+                const intensity = (index + 1) * 1.2;
+                const translateX = currentX * intensity * 25;
+                const translateY = currentY * intensity * 25;
                 
                 let baseTransform = '';
                 if (layer.classList.contains('parallax-layer-1')) {
-                    baseTransform = 'translateZ(-50px) scale(1.05)';
+                    baseTransform = 'translateZ(-100px)';
                 } else if (layer.classList.contains('parallax-layer-2')) {
-                    baseTransform = 'translateZ(-25px) scale(1.025)';
+                    baseTransform = 'translateZ(-50px)';
                 } else {
                     baseTransform = 'translateZ(0px)';
                 }
                 
+                // Only apply translation for movement, no rotation or scaling
                 layer.style.transform = `${baseTransform} 
-                    rotateX(${rotateX}deg) 
-                    rotateY(${rotateY}deg) 
                     translateX(${translateX}px) 
                     translateY(${translateY}px)`;
             });
