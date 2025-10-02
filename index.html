@@ -87,275 +87,30 @@
             -webkit-transform: translate3d(0, 0, 0);
         }
 
-        /* iOS/Mobile specific optimizations */
-        @supports (-webkit-touch-callout: none) {
+        /* Mobile/iOS optimizations */
+        @media (max-width: 768px), (-webkit-touch-callout: none) {
             .parallax-container {
                 position: fixed;
-                height: 130vh;
-                width: 130vw;
                 top: -15vh;
                 left: -15vw;
+                width: 130vw;
+                height: 130vh;
+                overflow: hidden;
                 transform: none;
             }
             
             .parallax-bg {
+                width: 130vw;
+                height: 130vh;
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center center;
                 transform: translate3d(0, 0, 0);
                 -webkit-transform: translate3d(0, 0, 0);
-                height: 130vh;
-                width: 130vw;
-                background-attachment: scroll;
-                background-size: cover;
-                background-position: center center;
-                top: 0;
-                left: 0;
             }
         }
 
-        /* iPhone specific fixes */
-        @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
-            .parallax-container {
-                position: fixed;
-                top: -15vh;
-                left: -15vw;
-                width: 130vw;
-                height: 130vh;
-                overflow: hidden;
-            }
-            
-            .parallax-bg {
-                width: 130vw;
-                height: 130vh;
-                background-attachment: scroll;
-                background-size: cover;
-                background-position: center center;
-                background-repeat: no-repeat;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .parallax-container {
-                position: fixed;
-                top: -15vh;
-                left: -15vw;
-                width: 130vw;
-                height: 130vh;
-                overflow: hidden;
-            }
-            
-            .parallax-bg {
-                width: 130vw;
-                height: 130vh;
-                background-size: cover;
-                background-position: center center;
-            }
-        }
-
-        /* Background flowing text */
-        .background-text {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 3;
-            opacity: 0.05;
-            pointer-events: none;
-        }
-
-        .flowing-text {
-            position: absolute;
-            white-space: nowrap;
-            font-size: 16px;
-            font-weight: 300;
-            width: max-content;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
-
-        .flowing-text-1 {
-            left: 10%;
-            animation: flowTextUp1 25s linear infinite;
-            animation-delay: 0s;
-        }
-
-        .flowing-text-2 {
-            left: 30%;
-            animation: flowTextUp2 28s linear infinite;
-            animation-delay: 3s;
-        }
-
-        .flowing-text-3 {
-            left: 50%;
-            animation: flowTextUp3 30s linear infinite;
-            animation-delay: 6s;
-        }
-
-        .flowing-text-4 {
-            left: 20%;
-            animation: flowTextUp4 32s linear infinite;
-            animation-delay: 9s;
-        }
-
-        .flowing-text-5 {
-            left: 60%;
-            animation: flowTextUp5 27s linear infinite;
-            animation-delay: 12s;
-        }
-
-        .flowing-text-6 {
-            left: 5%;
-            animation: flowTextUp6 29s linear infinite;
-            animation-delay: 15s;
-        }
-
-        .flowing-text-7 {
-            left: 40%;
-            animation: flowTextUp7 31s linear infinite;
-            animation-delay: 18s;
-        }
-
-        .flowing-text-8 {
-            left: 25%;
-            animation: flowTextUp8 26s linear infinite;
-            animation-delay: 21s;
-        }
-
-        @keyframes flowTextUp1 {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes flowTextUp2 {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes flowTextUp3 {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes flowTextUp4 {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes flowTextUp5 {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes flowTextUp6 {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes flowTextUp7 {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes flowTextUp8 {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
 
         /* Glowing lights background */
         .glow-container {
@@ -404,24 +159,6 @@
             animation: float3 10s infinite;
         }
 
-        .glow-4 {
-            width: 180px;
-            height: 180px;
-            background: rgba(150, 100, 255, 0.07);
-            bottom: 20%;
-            left: 30%;
-            animation: float4 7s infinite;
-        }
-
-        .glow-5 {
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 200, 100, 0.05);
-            top: 10%;
-            right: 40%;
-            animation: float5 9s infinite;
-        }
-
         @keyframes float1 {
             0%, 100% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(30px, -20px) scale(1.1); }
@@ -435,16 +172,6 @@
         @keyframes float3 {
             0%, 100% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(20px, 25px) scale(1.2); }
-        }
-
-        @keyframes float4 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-15px, -30px) scale(0.8); }
-        }
-
-        @keyframes float5 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(35px, 10px) scale(1.15); }
         }
 
         @keyframes rainbowFlowOnce {
@@ -474,47 +201,12 @@
                 left: -100%;
                 opacity: 0;
             }
-            15% {
-                opacity: 1;
-            }
-            85% {
-                opacity: 1;
+            50% {
+                opacity: 0.8;
             }
             100% {
                 left: 100%;
                 opacity: 0;
-            }
-        }
-
-        @keyframes liquidFlowHover {
-            0% {
-                left: -100%;
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                left: 100%;
-                opacity: 0;
-            }
-        }
-
-        @keyframes liquidGlow {
-            0% {
-                opacity: 0.3;
-                transform: scale(1);
-                filter: blur(6px) hue-rotate(0deg);
-            }
-            50% {
-                opacity: 0.7;
-                transform: scale(1.02);
-                filter: blur(10px) hue-rotate(30deg);
-            }
-            100% {
-                opacity: 0.4;
-                transform: scale(1);
-                filter: blur(8px) hue-rotate(60deg);
             }
         }
 
@@ -811,18 +503,13 @@
             right: -3px;
             bottom: -3px;
             background: linear-gradient(45deg, 
-                rgba(100, 181, 246, 0.4),
-                rgba(22, 33, 62, 0.3),
-                rgba(100, 181, 246, 0.4));
+                rgba(100, 181, 246, 0.3),
+                rgba(22, 33, 62, 0.2),
+                rgba(100, 181, 246, 0.3));
             border-radius: 25px;
             z-index: -1;
-            filter: blur(10px);
-            opacity: 0.7;
-            animation: liquidGlow 2.5s ease-in-out infinite alternate;
-        }
-
-        .glass-button:hover::before {
-            animation: liquidFlowHover 0.8s ease-out;
+            filter: blur(8px);
+            opacity: 0.5;
         }
 
         .glass-button:hover {
@@ -975,22 +662,6 @@
             transition: all 0.3s ease;
         }
 
-        .contact-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent 0%,
-                rgba(255, 255, 255, 0.15) 50%,
-                transparent 100%);
-            animation: liquidFlow 6s ease-in-out infinite;
-            z-index: 1;
-            pointer-events: none;
-        }
-
         .contact-item::after {
             content: '';
             position: absolute;
@@ -999,14 +670,13 @@
             right: -2px;
             bottom: -2px;
             background: linear-gradient(45deg, 
-                rgba(100, 181, 246, 0.25),
-                rgba(129, 199, 132, 0.2),
-                rgba(100, 181, 246, 0.25));
+                rgba(100, 181, 246, 0.2),
+                rgba(129, 199, 132, 0.15),
+                rgba(100, 181, 246, 0.2));
             border-radius: 18px;
             z-index: -1;
-            filter: blur(8px);
-            opacity: 0.4;
-            animation: liquidGlow 3.5s ease-in-out infinite alternate;
+            filter: blur(6px);
+            opacity: 0.3;
         }
 
         .contact-item:hover {
@@ -1165,8 +835,6 @@
         <div class="glow-light glow-1"></div>
         <div class="glow-light glow-2"></div>
         <div class="glow-light glow-3"></div>
-        <div class="glow-light glow-4"></div>
-        <div class="glow-light glow-5"></div>
     </div>
 
     <!-- Header -->
@@ -1605,53 +1273,8 @@
         // Start the parallax animation
         animateParallax();
 
-        // Performance optimization: Preload background image
-        function preloadBackgroundImage() {
-            const img = new Image();
-            img.onload = function() {
-                console.log('Background image preloaded successfully');
-                // Add a small delay to ensure smooth transition
-                setTimeout(() => {
-                    document.querySelector('.parallax-bg').style.opacity = '0.25';
-                }, 100);
-            };
-            img.onerror = function() {
-                console.warn('Failed to preload background image');
-            };
-            img.src = 'images/Gemini_Generated_Image_7tioye7tioye7tio.png';
-        }
-
-        // Performance optimization: Defer non-critical operations
-        function optimizePerformance() {
-            // Use requestIdleCallback for non-critical tasks
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(preloadBackgroundImage);
-            } else {
-                // Fallback for browsers without requestIdleCallback
-                setTimeout(preloadBackgroundImage, 100);
-            }
-
-            // Optimize scroll listener with passive events and throttling
-            let scrollTimeout;
-            const optimizedScrollHandler = () => {
-                if (scrollTimeout) return;
-                scrollTimeout = setTimeout(() => {
-                    onScrollAnimation();
-                    scrollTimeout = null;
-                }, 16); // ~60fps
-            };
-
-            // Replace the existing scroll listener with optimized version
-            window.removeEventListener('scroll', onScrollAnimation);
-            window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
-        }
-
-        // Initialize performance optimizations
-        optimizePerformance();
-
-        // Critical rendering path optimization
+        // Initialize hardware acceleration for parallax
         document.addEventListener('DOMContentLoaded', function() {
-            // Ensure background is visible immediately
             const parallaxBg = document.querySelector('.parallax-bg');
             if (parallaxBg) {
                 parallaxBg.style.willChange = 'transform';
