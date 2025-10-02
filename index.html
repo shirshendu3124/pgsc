@@ -31,6 +31,10 @@
             pointer-events: none;
             transform-style: preserve-3d;
             perspective: 1000px;
+            /* iOS Safari fixes */
+            -webkit-transform-style: preserve-3d;
+            -webkit-perspective: 1000px;
+            will-change: transform;
         }
 
         /* Background image with 3D effect */
@@ -45,12 +49,32 @@
             filter: brightness(0.8) contrast(1.1);
             transition: transform 0.1s ease-out;
             transform-style: preserve-3d;
+            /* iOS Safari fixes */
+            -webkit-transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform;
         }
 
         /* Single parallax layer */
         .parallax-layer-1 {
-            transform: translateZ(0px);
+            transform: translate3d(0, 0, 0);
             opacity: 0.3;
+            /* iOS Safari fixes */
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+
+        /* iOS/Mobile specific optimizations */
+        @supports (-webkit-touch-callout: none) {
+            .parallax-container {
+                position: absolute;
+                height: 100vh;
+            }
+            
+            .parallax-bg {
+                transform: translate3d(0, 0, 0);
+                -webkit-transform: translate3d(0, 0, 0);
+            }
         }
 
         /* Background flowing text */
@@ -442,12 +466,6 @@
                 drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))
                 drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
             transition: all 0.3s ease;
-        }
-
-        /* Make PGSC logo 10% bigger */
-        .pgsc-logo {
-            height: 69px;
-            max-width: 100px;
         }
 
         .iit-logo:hover, .pgsc-logo:hover {
@@ -953,11 +971,6 @@
                 height: 40px;
                 max-width: 40px;
             }
-
-            .pgsc-logo {
-                height: 44px;
-                max-width: 65px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -989,11 +1002,6 @@
             .iit-logo, .pgsc-logo {
                 height: 30px;
                 max-width: 30px;
-            }
-
-            .pgsc-logo {
-                height: 33px;
-                max-width: 50px;
             }
 
             .main-content {
@@ -1152,7 +1160,7 @@
                     <strong>Email:</strong> <a href="mailto:pgrep@hijli.iitkgp.ac.in" class="contact-link">pgrep@hijli.iitkgp.ac.in</a>
                 </div>
                 <div class="contact-item">
-                    <strong>WhatsApp:</strong> <a href="tel:+919064001633" class="contact-link">+91-9064001633</a>
+                    <strong>WhatsApp:</strong> <a href="https://wa.me/919064001633" class="contact-link" target="_blank">+91-9064001633</a>
                 </div>
             </div>
         </div>
@@ -1252,8 +1260,28 @@
         // Device orientation handler for mobile
         function handleOrientation(e) {
             if (e.beta !== null && e.gamma !== null) {
-                mouseX = e.gamma / 30; // Normalize to -1 to 1
-                mouseY = e.beta / 30;
+                // Clamp values for iOS
+                const clampedGamma = Math.max(-30, Math.min(30, e.gamma));
+                const clampedBeta = Math.max(-30, Math.min(30, e.beta));
+                
+                mouseX = clampedGamma / 30; // Normalize to -1 to 1
+                mouseY = clampedBeta / 30;
+            }
+        }
+        
+        // iOS permission request for device orientation
+        function requestOrientationPermission() {
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                DeviceOrientationEvent.requestPermission()
+                    .then(response => {
+                        if (response === 'granted') {
+                            window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+                        }
+                    })
+                    .catch(console.error);
+            } else {
+                // Non-iOS device
+                window.addEventListener('deviceorientation', handleOrientation, { passive: true });
             }
         }
         
@@ -1270,10 +1298,10 @@
                 const translateX = currentX * intensity * 30;
                 const translateY = currentY * intensity * 30;
                 
-                // Apply only translation for clean movement
-                layer.style.transform = `translateZ(0px) 
-                    translateX(${translateX}px) 
-                    translateY(${translateY}px)`;
+                // Use translate3d for better iOS performance
+                const transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+                layer.style.transform = transform;
+                layer.style.webkitTransform = transform; // iOS Safari prefix
             }
             
             requestAnimationFrame(animateParallax);
@@ -1284,8 +1312,33 @@
         
         // Add device orientation support for mobile
         if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+            // For iOS 13+ devices, request permission first
+            if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+                // Add a touch event to trigger permission request
+                document.addEventListener('touchstart', requestOrientationPermission, { once: true });
+            } else {
+                window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+            }
         }
+        
+        // Fallback for iOS - use touch events for parallax
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', (e) => {
+            const touchX = e.touches[0].clientX;
+            const touchY = e.touches[0].clientY;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            mouseX = (touchX - centerX) / centerX * 0.5; // Reduced intensity for touch
+            mouseY = (touchY - centerY) / centerY * 0.5;
+        }, { passive: true });
         
         // Reset position when mouse leaves
         document.addEventListener('mouseleave', () => {
