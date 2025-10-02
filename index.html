@@ -1093,6 +1093,12 @@
         <div class="parallax-bg parallax-layer-1"></div>
     </div>
 
+    <!-- iPhone Orientation Prompt (hidden by default) -->
+    <div id="orientation-prompt" style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 10px; z-index: 1000; font-size: 14px; text-align: center;">
+        <div>📱 Tilt your device to move the background</div>
+        <div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Tap anywhere to enable motion</div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="logo-container left-logo">
@@ -1315,28 +1321,103 @@
         // Device orientation handler for mobile
         function handleOrientation(e) {
             if (e.beta !== null && e.gamma !== null) {
-                // Clamp values for iOS
-                const clampedGamma = Math.max(-30, Math.min(30, e.gamma));
-                const clampedBeta = Math.max(-30, Math.min(30, e.beta));
+                // Clamp values for iOS with better sensitivity
+                const clampedGamma = Math.max(-45, Math.min(45, e.gamma));
+                const clampedBeta = Math.max(-45, Math.min(45, e.beta));
                 
-                mouseX = clampedGamma / 30; // Normalize to -1 to 1
-                mouseY = clampedBeta / 30;
+                // Increase sensitivity for more responsive movement
+                mouseX = clampedGamma / 45; // Normalize to -1 to 1
+                mouseY = clampedBeta / 45;
+                
+                // Apply some smoothing to reduce jitter
+                mouseX *= 0.8;
+                mouseY *= 0.8;
             }
         }
         
         // iOS permission request for device orientation
         function requestOrientationPermission() {
+            const orientationPrompt = document.getElementById('orientation-prompt');
+            
             if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                 DeviceOrientationEvent.requestPermission()
                     .then(response => {
                         if (response === 'granted') {
                             window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+                            console.log('Device orientation permission granted');
+                            if (orientationPrompt) {
+                                orientationPrompt.innerHTML = '<div>✅ Motion controls active!</div><div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Tilt to move background</div>';
+                                setTimeout(() => {
+                                    orientationPrompt.style.display = 'none';
+                                }, 2000);
+                            }
+                        } else {
+                            console.log('Device orientation permission denied');
+                            if (orientationPrompt) {
+                                orientationPrompt.innerHTML = '<div>❌ Motion permission needed</div><div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Touch controls available</div>';
+                                setTimeout(() => {
+                                    orientationPrompt.style.display = 'none';
+                                }, 3000);
+                            }
                         }
                     })
-                    .catch(console.error);
+                    .catch(error => {
+                        console.error('Error requesting device orientation permission:', error);
+                        if (orientationPrompt) {
+                            orientationPrompt.style.display = 'none';
+                        }
+                    });
             } else {
-                // Non-iOS device
+                // Non-iOS 13+ device - directly add event listener
                 window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+                console.log('Device orientation enabled (no permission required)');
+                if (orientationPrompt) {
+                    orientationPrompt.style.display = 'none';
+                }
+            }
+        }
+
+        // Auto-request permission when page loads (iOS Safari sometimes allows this)
+        function initializeOrientationOnLoad() {
+            if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+                const orientationPrompt = document.getElementById('orientation-prompt');
+                
+                // Show the prompt on iPhone
+                if (orientationPrompt) {
+                    orientationPrompt.style.display = 'block';
+                }
+                
+                // Try to request permission on page load (usually fails, but worth trying)
+                setTimeout(() => {
+                    requestOrientationPermission();
+                }, 500);
+                
+                // Make the entire screen tappable for permission request
+                let permissionRequested = false;
+                const requestPermissionOnTouch = () => {
+                    if (!permissionRequested) {
+                        permissionRequested = true;
+                        requestOrientationPermission();
+                        document.removeEventListener('touchstart', requestPermissionOnTouch);
+                        document.removeEventListener('click', requestPermissionOnTouch);
+                    }
+                };
+                
+                document.addEventListener('touchstart', requestPermissionOnTouch, { once: true });
+                document.addEventListener('click', requestPermissionOnTouch, { once: true });
+                
+                // Also try when the page becomes visible/focused
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden && !permissionRequested) {
+                        requestOrientationPermission();
+                    }
+                });
+                
+                window.addEventListener('focus', () => {
+                    if (!permissionRequested) {
+                        requestOrientationPermission();
+                    }
+                });
             }
         }
         
@@ -1367,12 +1448,15 @@
         
         // Add device orientation support for mobile
         if (window.DeviceOrientationEvent) {
-            // For iOS 13+ devices, request permission first
+            // For iOS 13+ devices, request permission immediately
             if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-                // Add a touch event to trigger permission request
+                // Try to request permission immediately
+                requestOrientationPermission();
+                
+                // Fallback: Add a touch event to trigger permission request if immediate request fails
                 document.addEventListener('touchstart', requestOrientationPermission, { once: true });
                 
-                // Also start with basic touch parallax immediately
+                // Also start with basic touch parallax as backup
                 enableTouchParallax();
             } else {
                 window.addEventListener('deviceorientation', handleOrientation, { passive: true });
@@ -1431,6 +1515,9 @@
             mouseX = 0;
             mouseY = 0;
         });
+        
+        // Initialize device orientation on page load
+        initializeOrientationOnLoad();
         
         // Start the parallax animation
         animateParallax();
