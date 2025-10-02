@@ -718,52 +718,69 @@
         /* Responsive design */
         @media (max-width: 768px) {
             .header {
-                flex-direction: column;
-                text-align: center;
-                padding: 20px;
-            }
-
-            .logo-container {
-                margin: 0;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 15px;
+                position: relative;
             }
 
             .left-logo {
+                position: absolute;
+                top: 15px;
+                left: 15px;
                 order: 1;
-                margin-bottom: 15px;
             }
 
             .nav {
-                order: 2;
-                margin-bottom: 15px;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
             }
 
             .right-logo {
+                position: absolute;
+                top: 15px;
+                right: 15px;
                 order: 3;
-                margin-bottom: 0;
             }
 
             .nav h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                text-align: center;
+                margin: 0;
             }
 
             .iit-logo, .pgsc-logo {
-                height: 50px;
-                max-width: 50px;
+                height: 45px;
+                max-width: 45px;
             }
         }
 
         @media (max-width: 480px) {
             .header {
-                padding: 15px;
+                padding: 10px;
+            }
+
+            .left-logo {
+                top: 10px;
+                left: 10px;
+            }
+
+            .right-logo {
+                top: 10px;
+                right: 10px;
             }
 
             .nav h1 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
             .iit-logo, .pgsc-logo {
-                height: 40px;
-                max-width: 40px;
+                height: 35px;
+                max-width: 35px;
             }
 
             .main-content {
