@@ -1098,17 +1098,21 @@
         // Device orientation handler for mobile
         function handleOrientation(e) {
             if (e.beta !== null && e.gamma !== null) {
-                // Clamp values for iOS with better sensitivity
-                const clampedGamma = Math.max(-45, Math.min(45, e.gamma));
-                const clampedBeta = Math.max(-45, Math.min(45, e.beta));
+                // Enhanced sensitivity range for dramatic depth effect
+                const clampedGamma = Math.max(-60, Math.min(60, e.gamma));
+                const clampedBeta = Math.max(-60, Math.min(60, e.beta));
                 
-                // Increase sensitivity for more responsive movement
-                mouseX = clampedGamma / 45; // Normalize to -1 to 1
-                mouseY = clampedBeta / 45;
+                // Increased sensitivity for much more responsive and dramatic movement
+                mouseX = clampedGamma / 30; // Normalize to wider range for more effect
+                mouseY = clampedBeta / 30;
                 
-                // Apply some smoothing to reduce jitter
-                mouseX *= 0.8;
-                mouseY *= 0.8;
+                // Reduced smoothing for more immediate response
+                mouseX *= 1.2; // Amplify the effect
+                mouseY *= 1.2;
+                
+                // Clamp to prevent extreme values
+                mouseX = Math.max(-1.5, Math.min(1.5, mouseX));
+                mouseY = Math.max(-1.5, Math.min(1.5, mouseY));
             }
         }
         
@@ -1181,16 +1185,18 @@
             // Apply transforms to the single layer
             const layer = document.querySelector('.parallax-layer-1');
             if (layer) {
-                // Increased intensity for iPhone to create more depth effect
-                let intensity = 1.5; // Default intensity
+                // Enhanced intensity for all devices to create more depth effect
+                let intensity = 4.5; // Increased base intensity for desktop
                 if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-                    intensity = 3.5; // Much higher intensity for iOS devices
+                    intensity = 5.5; // Even higher intensity for iOS devices
+                } else if (window.innerWidth <= 768) {
+                    intensity = 4.8; // High intensity for other mobile devices
                 }
                 
-                const translateX = currentX * intensity * 30;
-                const translateY = currentY * intensity * 30;
+                const translateX = currentX * intensity * 35;
+                const translateY = currentY * intensity * 35;
                 
-                // Use translate3d for better iOS performance
+                // Use translate3d for better performance across all devices
                 const transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
                 layer.style.transform = transform;
                 layer.style.webkitTransform = transform; // iOS Safari prefix
@@ -1228,8 +1234,9 @@
                 const centerX = window.innerWidth / 2;
                 const centerY = window.innerHeight / 2;
                 
-                mouseX = (touchX - centerX) / centerX * 0.3;
-                mouseY = (touchY - centerY) / centerY * 0.3;
+                // Increased sensitivity for more dramatic depth effect
+                mouseX = (touchX - centerX) / centerX * 0.8;
+                mouseY = (touchY - centerY) / centerY * 0.8;
             }, { passive: true });
             
             document.addEventListener('touchmove', (e) => {
@@ -1239,8 +1246,9 @@
                     const centerX = window.innerWidth / 2;
                     const centerY = window.innerHeight / 2;
                     
-                    mouseX = (touchX - centerX) / centerX * 0.3;
-                    mouseY = (touchY - centerY) / centerY * 0.3;
+                    // Increased sensitivity for more dramatic depth effect
+                    mouseX = (touchX - centerX) / centerX * 0.8;
+                    mouseY = (touchY - centerY) / centerY * 0.8;
                 }
             }, { passive: true });
             
