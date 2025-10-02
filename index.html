@@ -654,8 +654,10 @@
             font-size: 2.5rem;
             margin-bottom: 20px;
             background: linear-gradient(90deg, 
-                #64b5f6, #ffffff, #64b5f6);
-            background-size: 300% 100%;
+                #ff0000, #ff4500, #ffa500, #ffff00, 
+                #9aff9a, #00ffff, #0080ff, #8a2be2, 
+                #ff1493, #ff0000);
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -663,8 +665,8 @@
             transition: all 0.1s ease;
         }
 
-        .pgsc-info h2.color-flow-triggered {
-            animation: colorFlowOnce 2s ease-in-out forwards;
+        .pgsc-info h2.rainbow-triggered {
+            animation: rainbowFlowOnce 2s ease-in-out forwards;
         }
 
         .pgsc-info p {
@@ -853,20 +855,7 @@
             font-weight: 600;
             margin-bottom: 5px;
             display: block;
-            background: linear-gradient(90deg, 
-                #ff0000, #ff4500, #ffa500, #ffff00, 
-                #9aff9a, #00ffff, #0080ff, #8a2be2, 
-                #ff1493, #ff0000);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-position: -200% 50%;
-            transition: all 0.1s ease;
-        }
-
-        .button-text.rainbow-triggered {
-            animation: rainbowFlowOnce 2s ease-in-out forwards;
+            color: #ffffff;
         }
 
         .button-subtitle {
@@ -1375,24 +1364,10 @@
         function handleRainbowAnimations() {
             const windowHeight = window.innerHeight;
             
-            // PGSC heading with color flow (not rainbow)
-            const pgscHeading = document.querySelector('.pgsc-info h2');
-            if (pgscHeading && !pgscHeading.dataset.colorFlowTriggered) {
-                const rect = pgscHeading.getBoundingClientRect();
-                const elementTop = rect.top;
-                const elementBottom = rect.bottom;
-                
-                // Trigger when element is 70% visible in viewport
-                if (elementTop < windowHeight * 0.7 && elementBottom > 0) {
-                    pgscHeading.classList.add('color-flow-triggered');
-                    pgscHeading.dataset.colorFlowTriggered = 'true';
-                }
-            }
-            
-            // Other elements with rainbow effect
+            // Elements with rainbow effect
             const rainbowElements = [
-                { selector: '.secretary-positions h2', triggered: false },
-                { selector: '.button-text', triggered: false }
+                { selector: '.pgsc-info h2', triggered: false },
+                { selector: '.secretary-positions h2', triggered: false }
             ];
             
             rainbowElements.forEach(elementData => {
