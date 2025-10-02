@@ -746,39 +746,7 @@
             overflow: hidden;
         }
 
-        .position-details::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent 0%,
-                rgba(255, 255, 255, 0.12) 50%,
-                transparent 100%);
-            animation: liquidFlow 5s ease-in-out infinite;
-            z-index: 1;
-            pointer-events: none;
-        }
 
-        .position-details::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                rgba(100, 181, 246, 0.2),
-                rgba(129, 199, 132, 0.15),
-                rgba(100, 181, 246, 0.2));
-            border-radius: 20px;
-            z-index: -1;
-            filter: blur(6px);
-            opacity: 0.5;
-            animation: liquidGlow 4s ease-in-out infinite alternate;
-        }
 
         .position-details h3 {
             font-size: 1.8rem;
