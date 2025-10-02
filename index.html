@@ -73,18 +73,18 @@
         @supports (-webkit-touch-callout: none) {
             .parallax-container {
                 position: fixed;
-                height: 100vh;
-                width: 100vw;
-                top: 0;
-                left: 0;
+                height: 110vh;
+                width: 110vw;
+                top: -5vh;
+                left: -5vw;
                 transform: none;
             }
             
             .parallax-bg {
                 transform: translate3d(0, 0, 0);
                 -webkit-transform: translate3d(0, 0, 0);
-                height: 100vh;
-                width: 100vw;
+                height: 110vh;
+                width: 110vw;
                 background-attachment: scroll;
                 background-size: cover;
                 background-position: center center;
@@ -97,16 +97,16 @@
         @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
             .parallax-container {
                 position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
+                top: -5vh;
+                left: -5vw;
+                width: 110vw;
+                height: 110vh;
                 overflow: hidden;
             }
             
             .parallax-bg {
-                width: 100vw;
-                height: 100vh;
+                width: 110vw;
+                height: 110vh;
                 background-attachment: scroll;
                 background-size: cover;
                 background-position: center center;
@@ -117,16 +117,16 @@
         @media (max-width: 480px) {
             .parallax-container {
                 position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
+                top: -5vh;
+                left: -5vw;
+                width: 110vw;
+                height: 110vh;
                 overflow: hidden;
             }
             
             .parallax-bg {
-                width: 100vw;
-                height: 100vh;
+                width: 110vw;
+                height: 110vh;
                 background-size: cover;
                 background-position: center center;
             }
@@ -1387,37 +1387,44 @@
                     orientationPrompt.style.display = 'block';
                 }
                 
-                // Try to request permission on page load (usually fails, but worth trying)
-                setTimeout(() => {
-                    requestOrientationPermission();
-                }, 500);
-                
                 // Make the entire screen tappable for permission request
                 let permissionRequested = false;
-                const requestPermissionOnTouch = () => {
+                const requestPermissionOnTouch = (e) => {
                     if (!permissionRequested) {
                         permissionRequested = true;
                         requestOrientationPermission();
+                        // Remove listeners after first touch
                         document.removeEventListener('touchstart', requestPermissionOnTouch);
                         document.removeEventListener('click', requestPermissionOnTouch);
                     }
                 };
                 
-                document.addEventListener('touchstart', requestPermissionOnTouch, { once: true });
-                document.addEventListener('click', requestPermissionOnTouch, { once: true });
+                // Add touch listeners for permission request
+                document.addEventListener('touchstart', requestPermissionOnTouch);
+                document.addEventListener('click', requestPermissionOnTouch);
                 
-                // Also try when the page becomes visible/focused
-                document.addEventListener('visibilitychange', () => {
-                    if (!document.hidden && !permissionRequested) {
-                        requestOrientationPermission();
+                // Try to auto-detect device motion without permission (for older iOS)
+                const testOrientation = (e) => {
+                    if (e.beta !== null && e.gamma !== null && !permissionRequested) {
+                        // Motion detected without permission - add listener
+                        window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+                        if (orientationPrompt) {
+                            orientationPrompt.innerHTML = '<div>✅ Motion controls active!</div><div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Tilt to move background</div>';
+                            setTimeout(() => {
+                                orientationPrompt.style.display = 'none';
+                            }, 2000);
+                        }
+                        window.removeEventListener('deviceorientation', testOrientation);
                     }
-                });
+                };
                 
-                window.addEventListener('focus', () => {
-                    if (!permissionRequested) {
-                        requestOrientationPermission();
-                    }
-                });
+                // Test if orientation works without permission
+                window.addEventListener('deviceorientation', testOrientation, { passive: true });
+                
+                // Remove test listener after 3 seconds
+                setTimeout(() => {
+                    window.removeEventListener('deviceorientation', testOrientation);
+                }, 3000);
             }
         }
         
@@ -1448,14 +1455,9 @@
         
         // Add device orientation support for mobile
         if (window.DeviceOrientationEvent) {
-            // For iOS 13+ devices, request permission immediately
+            // For iOS 13+ devices, request permission only on user interaction
             if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-                // Try to request permission immediately
-                requestOrientationPermission();
-                
-                // Fallback: Add a touch event to trigger permission request if immediate request fails
-                document.addEventListener('touchstart', requestOrientationPermission, { once: true });
-                
+                // Don't request immediately - wait for user interaction
                 // Also start with basic touch parallax as backup
                 enableTouchParallax();
             } else {
