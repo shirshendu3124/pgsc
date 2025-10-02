@@ -49,18 +49,8 @@
             transform-style: preserve-3d;
         }
 
-        /* Multiple depth layers for enhanced 3D effect */
+        /* Single parallax layer */
         .parallax-layer-1 {
-            transform: translateZ(-100px);
-            opacity: 0.15;
-        }
-
-        .parallax-layer-2 {
-            transform: translateZ(-50px);
-            opacity: 0.2;
-        }
-
-        .parallax-layer-3 {
             transform: translateZ(0px);
             opacity: 0.3;
         }
@@ -836,8 +826,6 @@
     <!-- 3D Parallax Background -->
     <div class="parallax-container" id="parallax-container">
         <div class="parallax-bg parallax-layer-1"></div>
-        <div class="parallax-bg parallax-layer-2"></div>
-        <div class="parallax-bg parallax-layer-3"></div>
     </div>
 
     <!-- Animated background text -->
@@ -1110,27 +1098,18 @@
             currentX += (mouseX - currentX) * 0.08;
             currentY += (mouseY - currentY) * 0.08;
             
-            // Apply transforms to each layer with different intensities
-            parallaxLayers.forEach((layer, index) => {
-                // Increased movement intensity for more depth effect
-                const intensity = (index + 1) * 1.2;
-                const translateX = currentX * intensity * 25;
-                const translateY = currentY * intensity * 25;
+            // Apply transforms to the single layer
+            const layer = document.querySelector('.parallax-layer-1');
+            if (layer) {
+                const intensity = 1.5; // Single layer movement intensity
+                const translateX = currentX * intensity * 30;
+                const translateY = currentY * intensity * 30;
                 
-                let baseTransform = '';
-                if (layer.classList.contains('parallax-layer-1')) {
-                    baseTransform = 'translateZ(-100px)';
-                } else if (layer.classList.contains('parallax-layer-2')) {
-                    baseTransform = 'translateZ(-50px)';
-                } else {
-                    baseTransform = 'translateZ(0px)';
-                }
-                
-                // Only apply translation for movement, no rotation or scaling
-                layer.style.transform = `${baseTransform} 
+                // Apply only translation for clean movement
+                layer.style.transform = `translateZ(0px) 
                     translateX(${translateX}px) 
                     translateY(${translateY}px)`;
-            });
+            }
             
             requestAnimationFrame(animateParallax);
         }
