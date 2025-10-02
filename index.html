@@ -720,16 +720,17 @@
             .header {
                 flex-direction: row;
                 justify-content: space-between;
-                align-items: flex-start;
+                align-items: center;
                 padding: 15px;
                 position: relative;
+                min-height: 70px;
             }
 
             .left-logo {
                 position: absolute;
                 top: 15px;
                 left: 15px;
-                order: 1;
+                z-index: 101;
             }
 
             .nav {
@@ -737,31 +738,40 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin: 0;
+                margin: 0 70px;
+                padding: 0 10px;
             }
 
             .right-logo {
                 position: absolute;
                 top: 15px;
                 right: 15px;
-                order: 3;
+                z-index: 101;
             }
 
             .nav h1 {
-                font-size: 1.8rem;
+                font-size: 1.4rem;
                 text-align: center;
                 margin: 0;
+                line-height: 1.2;
+                word-break: break-word;
             }
 
             .iit-logo, .pgsc-logo {
-                height: 45px;
-                max-width: 45px;
+                height: 40px;
+                max-width: 40px;
+            }
+
+            .pgsc-logo {
+                height: 44px;
+                max-width: 44px;
             }
         }
 
         @media (max-width: 480px) {
             .header {
                 padding: 10px;
+                min-height: 60px;
             }
 
             .left-logo {
@@ -774,13 +784,24 @@
                 right: 10px;
             }
 
+            .nav {
+                margin: 0 60px;
+                padding: 0 5px;
+            }
+
             .nav h1 {
-                font-size: 1.4rem;
+                font-size: 1.1rem;
+                line-height: 1.1;
             }
 
             .iit-logo, .pgsc-logo {
-                height: 35px;
-                max-width: 35px;
+                height: 30px;
+                max-width: 30px;
+            }
+
+            .pgsc-logo {
+                height: 33px;
+                max-width: 33px;
             }
 
             .main-content {
