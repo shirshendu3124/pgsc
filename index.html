@@ -73,18 +73,18 @@
         @supports (-webkit-touch-callout: none) {
             .parallax-container {
                 position: fixed;
-                height: 110vh;
-                width: 110vw;
-                top: -5vh;
-                left: -5vw;
+                height: 130vh;
+                width: 130vw;
+                top: -15vh;
+                left: -15vw;
                 transform: none;
             }
             
             .parallax-bg {
                 transform: translate3d(0, 0, 0);
                 -webkit-transform: translate3d(0, 0, 0);
-                height: 110vh;
-                width: 110vw;
+                height: 130vh;
+                width: 130vw;
                 background-attachment: scroll;
                 background-size: cover;
                 background-position: center center;
@@ -97,16 +97,16 @@
         @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
             .parallax-container {
                 position: fixed;
-                top: -5vh;
-                left: -5vw;
-                width: 110vw;
-                height: 110vh;
+                top: -15vh;
+                left: -15vw;
+                width: 130vw;
+                height: 130vh;
                 overflow: hidden;
             }
             
             .parallax-bg {
-                width: 110vw;
-                height: 110vh;
+                width: 130vw;
+                height: 130vh;
                 background-attachment: scroll;
                 background-size: cover;
                 background-position: center center;
@@ -117,16 +117,16 @@
         @media (max-width: 480px) {
             .parallax-container {
                 position: fixed;
-                top: -5vh;
-                left: -5vw;
-                width: 110vw;
-                height: 110vh;
+                top: -15vh;
+                left: -15vw;
+                width: 130vw;
+                height: 130vh;
                 overflow: hidden;
             }
             
             .parallax-bg {
-                width: 110vw;
-                height: 110vh;
+                width: 130vw;
+                height: 130vh;
                 background-size: cover;
                 background-position: center center;
             }
@@ -1093,12 +1093,6 @@
         <div class="parallax-bg parallax-layer-1"></div>
     </div>
 
-    <!-- iPhone Orientation Prompt (hidden by default) -->
-    <div id="orientation-prompt" style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 10px; z-index: 1000; font-size: 14px; text-align: center;">
-        <div>📱 Tilt your device to move the background</div>
-        <div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Tap anywhere to enable motion</div>
-    </div>
-
     <!-- Header -->
     <header class="header">
         <div class="logo-container left-logo">
@@ -1337,56 +1331,29 @@
         
         // iOS permission request for device orientation
         function requestOrientationPermission() {
-            const orientationPrompt = document.getElementById('orientation-prompt');
-            
             if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                 DeviceOrientationEvent.requestPermission()
                     .then(response => {
                         if (response === 'granted') {
                             window.addEventListener('deviceorientation', handleOrientation, { passive: true });
                             console.log('Device orientation permission granted');
-                            if (orientationPrompt) {
-                                orientationPrompt.innerHTML = '<div>✅ Motion controls active!</div><div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Tilt to move background</div>';
-                                setTimeout(() => {
-                                    orientationPrompt.style.display = 'none';
-                                }, 2000);
-                            }
                         } else {
                             console.log('Device orientation permission denied');
-                            if (orientationPrompt) {
-                                orientationPrompt.innerHTML = '<div>❌ Motion permission needed</div><div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Touch controls available</div>';
-                                setTimeout(() => {
-                                    orientationPrompt.style.display = 'none';
-                                }, 3000);
-                            }
                         }
                     })
                     .catch(error => {
                         console.error('Error requesting device orientation permission:', error);
-                        if (orientationPrompt) {
-                            orientationPrompt.style.display = 'none';
-                        }
                     });
             } else {
                 // Non-iOS 13+ device - directly add event listener
                 window.addEventListener('deviceorientation', handleOrientation, { passive: true });
                 console.log('Device orientation enabled (no permission required)');
-                if (orientationPrompt) {
-                    orientationPrompt.style.display = 'none';
-                }
             }
         }
 
         // Auto-request permission when page loads (iOS Safari sometimes allows this)
         function initializeOrientationOnLoad() {
             if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-                const orientationPrompt = document.getElementById('orientation-prompt');
-                
-                // Show the prompt on iPhone
-                if (orientationPrompt) {
-                    orientationPrompt.style.display = 'block';
-                }
-                
                 // Make the entire screen tappable for permission request
                 let permissionRequested = false;
                 const requestPermissionOnTouch = (e) => {
@@ -1408,12 +1375,6 @@
                     if (e.beta !== null && e.gamma !== null && !permissionRequested) {
                         // Motion detected without permission - add listener
                         window.addEventListener('deviceorientation', handleOrientation, { passive: true });
-                        if (orientationPrompt) {
-                            orientationPrompt.innerHTML = '<div>✅ Motion controls active!</div><div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Tilt to move background</div>';
-                            setTimeout(() => {
-                                orientationPrompt.style.display = 'none';
-                            }, 2000);
-                        }
                         window.removeEventListener('deviceorientation', testOrientation);
                     }
                 };
@@ -1437,7 +1398,12 @@
             // Apply transforms to the single layer
             const layer = document.querySelector('.parallax-layer-1');
             if (layer) {
-                const intensity = 1.5; // Single layer movement intensity
+                // Increased intensity for iPhone to create more depth effect
+                let intensity = 1.5; // Default intensity
+                if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+                    intensity = 3.5; // Much higher intensity for iOS devices
+                }
+                
                 const translateX = currentX * intensity * 30;
                 const translateY = currentY * intensity * 30;
                 
