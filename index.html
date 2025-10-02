@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PGSC Secretary Nominations - IIT Kharagpur</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="images/Gemini_Generated_Image_7tioye7tioye7tio.png" as="image" type="image/png">
+    <link rel="preload" href="images/iitkgp_logo.svg.png" as="image" type="image/png">
+    <link rel="preload" href="images/Untitled_design-removebg-preview.png" as="image" type="image/png">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <!-- Resource hints for better performance -->
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="color-scheme" content="dark">
     <style>
         * {
             margin: 0;
@@ -54,11 +66,17 @@
             filter: brightness(0.8) contrast(1.1);
             transition: transform 0.1s ease-out;
             transform-style: preserve-3d;
-            /* iOS Safari fixes */
+            /* Performance optimizations */
             -webkit-transform-style: preserve-3d;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             will-change: transform;
+            /* Image loading optimization */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            /* Hardware acceleration */
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         /* Single parallax layer */
@@ -339,7 +357,7 @@
             }
         }
 
-        /* Glowing lights background */
+        /* Enhanced Glowing lights background */
         .glow-container {
             position: fixed;
             top: 0;
@@ -348,6 +366,7 @@
             height: 100%;
             z-index: 4;
             pointer-events: none;
+            overflow: hidden;
         }
 
         .glow-light {
@@ -357,6 +376,142 @@
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
             animation-direction: alternate;
+        }
+
+        /* Evening Brief Style Light Rays */
+        .light-ray {
+            position: absolute;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 20%,
+                rgba(100, 181, 246, 0.15) 50%,
+                rgba(255, 255, 255, 0.1) 80%,
+                transparent 100%);
+            height: 2px;
+            width: 100%;
+            transform-origin: left center;
+            animation: sweepLight 8s ease-in-out infinite;
+        }
+
+        .light-ray-1 {
+            top: 20%;
+            animation-delay: 0s;
+            opacity: 0.6;
+        }
+
+        .light-ray-2 {
+            top: 35%;
+            animation-delay: 2s;
+            opacity: 0.4;
+        }
+
+        .light-ray-3 {
+            top: 50%;
+            animation-delay: 4s;
+            opacity: 0.7;
+        }
+
+        .light-ray-4 {
+            top: 65%;
+            animation-delay: 6s;
+            opacity: 0.5;
+        }
+
+        /* Spotlight effect */
+        .spotlight {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(100, 181, 246, 0.2) 0%,
+                rgba(100, 181, 246, 0.1) 30%,
+                rgba(255, 255, 255, 0.05) 60%,
+                transparent 100%);
+            filter: blur(20px);
+            animation: spotlight 12s ease-in-out infinite;
+        }
+
+        .spotlight-1 {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .spotlight-2 {
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 4s;
+        }
+
+        .spotlight-3 {
+            top: 40%;
+            right: 30%;
+            animation-delay: 8s;
+        }
+
+        /* Particle lights */
+        .particle-light {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(100, 181, 246, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(100, 181, 246, 0.6);
+            animation: particleFloat 15s linear infinite;
+        }
+
+        @keyframes sweepLight {
+            0% {
+                transform: translateX(-100%) rotate(-5deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) rotate(5deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes spotlight {
+            0%, 100% {
+                transform: scale(1) translate(0, 0);
+                opacity: 0.3;
+            }
+            25% {
+                transform: scale(1.2) translate(20px, -15px);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(0.8) translate(-15px, 10px);
+                opacity: 0.8;
+            }
+            75% {
+                transform: scale(1.1) translate(10px, -20px);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0;
+            }
         }
 
         .glow-1 {
@@ -521,6 +676,12 @@
                 drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))
                 drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
             transition: all 0.3s ease;
+            /* Image loading optimization */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            /* Hardware acceleration */
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         .iit-logo:hover, .pgsc-logo:hover {
@@ -567,9 +728,37 @@
             box-shadow: 
                 0 8px 32px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 0 50px rgba(100, 181, 246, 0.15);
             position: relative;
             overflow: hidden;
+            /* Enhanced lighting effect */
+            animation: sectionGlow 8s ease-in-out infinite alternate;
+        }
+
+        /* Enhanced section glow animation */
+        @keyframes sectionGlow {
+            0% {
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                    0 0 0 1px rgba(255, 255, 255, 0.05),
+                    0 0 30px rgba(100, 181, 246, 0.1);
+            }
+            50% {
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    0 0 0 1px rgba(255, 255, 255, 0.08),
+                    0 0 60px rgba(100, 181, 246, 0.2);
+            }
+            100% {
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                    0 0 0 1px rgba(255, 255, 255, 0.06),
+                    0 0 80px rgba(100, 181, 246, 0.25);
+            }
         }
 
         .pgsc-info::before {
@@ -1088,22 +1277,109 @@
     </style>
 </head>
 <body>
+        .pgsc-info {
+            margin-bottom: 60px;
+            text-align: center;
+            background: linear-gradient(135deg, 
+                rgba(100, 181, 246, 0.12) 0%,
+                rgba(255, 255, 255, 0.08) 25%,
+                rgba(129, 199, 132, 0.10) 50%,
+                rgba(255, 255, 255, 0.06) 75%,
+                rgba(100, 181, 246, 0.12) 100%);
+            padding: 40px;
+            border-radius: 25px;
+            backdrop-filter: blur(25px) saturate(1.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 0 50px rgba(100, 181, 246, 0.15);
+            position: relative;
+            overflow: hidden;
+            /* Enhanced lighting effect */
+            animation: sectionGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes sectionGlow {
+            0% {
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                    0 0 0 1px rgba(255, 255, 255, 0.05),
+                    0 0 30px rgba(100, 181, 246, 0.1);
+            }
+            50% {
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    0 0 0 1px rgba(255, 255, 255, 0.08),
+                    0 0 60px rgba(100, 181, 246, 0.2);
+            }
+            100% {
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                    0 0 0 1px rgba(255, 255, 255, 0.06),
+                    0 0 80px rgba(100, 181, 246, 0.25);
+            }
+        }
+    </style>
+</head>
+<body>
     <!-- 3D Parallax Background -->
     <div class="parallax-container" id="parallax-container">
         <div class="parallax-bg parallax-layer-1"></div>
     </div>
 
+    <!-- Evening Brief Style Light Effects -->
+    <div class="glow-container">
+        <!-- Light Rays -->
+        <div class="light-ray light-ray-1"></div>
+        <div class="light-ray light-ray-2"></div>
+        <div class="light-ray light-ray-3"></div>
+        <div class="light-ray light-ray-4"></div>
+        
+        <!-- Spotlights -->
+        <div class="spotlight spotlight-1"></div>
+        <div class="spotlight spotlight-2"></div>
+        <div class="spotlight spotlight-3"></div>
+        
+        <!-- Existing glow lights -->
+        <div class="glow-light glow-1"></div>
+        <div class="glow-light glow-2"></div>
+        <div class="glow-light glow-3"></div>
+        <div class="glow-light glow-4"></div>
+        <div class="glow-light glow-5"></div>
+        
+        <!-- Floating particle lights -->
+        <div class="particle-light" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle-light" style="left: 25%; animation-delay: 3s;"></div>
+        <div class="particle-light" style="left: 40%; animation-delay: 6s;"></div>
+        <div class="particle-light" style="left: 60%; animation-delay: 9s;"></div>
+        <div class="particle-light" style="left: 75%; animation-delay: 12s;"></div>
+        <div class="particle-light" style="left: 90%; animation-delay: 2s;"></div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="logo-container left-logo">
-            <!-- IIT KGP Logo -->
-            <img src="images/iitkgp_logo.svg.png" alt="IIT Kharagpur Logo" class="iit-logo">
+            <!-- IIT KGP Logo with loading optimization -->
+            <img src="images/iitkgp_logo.svg.png" 
+                 alt="IIT Kharagpur Logo" 
+                 class="iit-logo"
+                 loading="eager"
+                 decoding="async">
         </div>
         <nav class="nav">
             <h1>PGSC Secretary Nominations</h1>
         </nav>
         <div class="logo-container right-logo">
-            <img src="images/Untitled_design-removebg-preview.png" alt="PGSC Logo" class="pgsc-logo">
+            <img src="images/Untitled_design-removebg-preview.png" 
+                 alt="PGSC Logo" 
+                 class="pgsc-logo"
+                 loading="eager"
+                 decoding="async">
         </div>
     </header>
 
@@ -1489,6 +1765,60 @@
         
         // Start the parallax animation
         animateParallax();
+
+        // Performance optimization: Preload background image
+        function preloadBackgroundImage() {
+            const img = new Image();
+            img.onload = function() {
+                console.log('Background image preloaded successfully');
+                // Add a small delay to ensure smooth transition
+                setTimeout(() => {
+                    document.querySelector('.parallax-bg').style.opacity = '0.25';
+                }, 100);
+            };
+            img.onerror = function() {
+                console.warn('Failed to preload background image');
+            };
+            img.src = 'images/Gemini_Generated_Image_7tioye7tioye7tio.png';
+        }
+
+        // Performance optimization: Defer non-critical operations
+        function optimizePerformance() {
+            // Use requestIdleCallback for non-critical tasks
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(preloadBackgroundImage);
+            } else {
+                // Fallback for browsers without requestIdleCallback
+                setTimeout(preloadBackgroundImage, 100);
+            }
+
+            // Optimize scroll listener with passive events and throttling
+            let scrollTimeout;
+            const optimizedScrollHandler = () => {
+                if (scrollTimeout) return;
+                scrollTimeout = setTimeout(() => {
+                    onScrollAnimation();
+                    scrollTimeout = null;
+                }, 16); // ~60fps
+            };
+
+            // Replace the existing scroll listener with optimized version
+            window.removeEventListener('scroll', onScrollAnimation);
+            window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+        }
+
+        // Initialize performance optimizations
+        optimizePerformance();
+
+        // Critical rendering path optimization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure background is visible immediately
+            const parallaxBg = document.querySelector('.parallax-bg');
+            if (parallaxBg) {
+                parallaxBg.style.willChange = 'transform';
+                parallaxBg.style.transform = 'translateZ(0)';
+            }
+        });
     </script>
 </body>
 </html>
