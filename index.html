@@ -975,8 +975,8 @@
                             const detailsCenter = dRect.top + dRect.height / 2;
                             const viewportMiddle = windowHeight / 2;
                             const distance = Math.abs(detailsCenter - viewportMiddle);
-                            // threshold: 15% of viewport height
-                            const threshold = windowHeight * 0.15;
+                            // threshold: 20% of viewport height (move focus earlier on mobile)
+                            const threshold = windowHeight * 0.20;
                             if (distance <= threshold) {
                                 // details are near the middle - trigger details focus
                                 section.classList.add('details-zoom-in');
