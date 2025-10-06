@@ -183,32 +183,7 @@
             }
         }
 
-        @keyframes colorFlowOnce {
-            0% {
-                background-position: -200% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
 
-        /* Liquid Glass Animations */
-        @keyframes liquidFlow {
-            0% {
-                left: -100%;
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                left: 100%;
-                opacity: 0;
-            }
-        }
 
         /* Header styles */
         .header {
@@ -517,19 +492,21 @@
             transform: translateY(-2px);
         }
 
-        /* Focus/active visual parity with .pgsc-info */
+        /* Focus/active visual parity - make focused sections more visible like PGSC */
         .scroll-animation-section.button-zoom-in .position-details,
         .scroll-animation-section.button-zoom-in .position-button-container .glass-button,
         .scroll-animation-section.details-zoom-in .position-details,
         .scroll-animation-section.details-zoom-in .position-button-container .glass-button {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(100, 181, 246, 0.3);
+            transform: translateY(-2px);
         }
 
-        /* When fully active, increase to same hover transparency as .pgsc-info:hover */
+        /* When fully active, maintain the same enhanced visibility */
         .scroll-animation-section.active .position-details,
         .scroll-animation-section.active .position-button-container .glass-button {
             background: rgba(255, 255, 255, 0.15);
@@ -949,7 +926,6 @@
                 const rect = section.getBoundingClientRect();
                 const sectionTop = rect.top;
                 const sectionHeight = rect.height;
-                const sectionCenter = sectionTop + sectionHeight / 2;
                 
                 // Remove all animation classes first
                 section.classList.remove('button-zoom-in', 'details-zoom-in', 'active');
@@ -1069,8 +1045,6 @@
         handleScrollAnimation();
 
         // 3D Parallax Effect
-        const parallaxContainer = document.getElementById('parallax-container');
-        const parallaxLayers = document.querySelectorAll('.parallax-bg');
         
         let mouseX = 0;
         let mouseY = 0;
