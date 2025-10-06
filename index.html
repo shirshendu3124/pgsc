@@ -975,11 +975,20 @@
                             const detailsCenter = dRect.top + dRect.height / 2;
                             const viewportMiddle = windowHeight / 2;
                             const distance = Math.abs(detailsCenter - viewportMiddle);
-                            // threshold: 20% of viewport height (move focus earlier on mobile)
-                            const threshold = windowHeight * 0.20;
+                            // threshold: 30% of viewport height (move focus earlier on mobile)
+                            const threshold = windowHeight * 0.30;
+
                             if (distance <= threshold) {
-                                // details are near the middle - trigger details focus
-                                section.classList.add('details-zoom-in');
+                                // details are near the middle - trigger both button and details focus together
+                                section.classList.add('button-zoom-in', 'details-zoom-in');
+                            } else if (normalizedProgress >= 0.08 && normalizedProgress < 0.45) {
+                                // fallback: emphasize button during the phase window
+                                section.classList.add('button-zoom-in');
+                            }
+                        } else {
+                            // If no details element found, fallback to normalized progress for button emphasis
+                            if (normalizedProgress >= 0.08 && normalizedProgress < 0.45) {
+                                section.classList.add('button-zoom-in');
                             }
                         }
 
