@@ -1100,25 +1100,27 @@
             }
         }
         
-        // Smooth animation function
+        // Smooth animation function (slower, more relaxed movement)
         function animateParallax() {
             // Smooth interpolation for fluid movement
-            currentX += (mouseX - currentX) * 0.08;
-            currentY += (mouseY - currentY) * 0.08;
+            // Reduced interpolation factor for slower following (more inertia)
+            currentX += (mouseX - currentX) * 0.04;
+            currentY += (mouseY - currentY) * 0.04;
             
             // Apply transforms to the single layer
             const layer = document.querySelector('.parallax-layer-1');
             if (layer) {
-                // Enhanced intensity for all devices to create more depth effect
-                let intensity = 4.5; // Increased base intensity for desktop
+                // Reduced intensity for subtler, slower background movement
+                let intensity = 2.0; // gentler base intensity for desktop
                 if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-                    intensity = 5.5; // Even higher intensity for iOS devices
+                    intensity = 2.4; // slightly higher but still gentle for iOS
                 } else if (window.innerWidth <= 768) {
-                    intensity = 4.8; // High intensity for other mobile devices
+                    intensity = 2.2; // mobile devices
                 }
-                
-                const translateX = currentX * intensity * 35;
-                const translateY = currentY * intensity * 35;
+
+                // Smaller multiplier for translation so the layer moves less
+                const translateX = currentX * intensity * 18;
+                const translateY = currentY * intensity * 18;
                 
                 // Use translate3d for better performance across all devices
                 const transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
@@ -1158,9 +1160,9 @@
                 const centerX = window.innerWidth / 2;
                 const centerY = window.innerHeight / 2;
                 
-                // Increased sensitivity for more dramatic depth effect
-                mouseX = (touchX - centerX) / centerX * 0.8;
-                mouseY = (touchY - centerY) / centerY * 0.8;
+                // Reduced sensitivity for slower, subtler touch parallax
+                mouseX = (touchX - centerX) / centerX * 0.4;
+                mouseY = (touchY - centerY) / centerY * 0.4;
             }, { passive: true });
             
             document.addEventListener('touchmove', (e) => {
@@ -1170,9 +1172,9 @@
                     const centerX = window.innerWidth / 2;
                     const centerY = window.innerHeight / 2;
                     
-                    // Increased sensitivity for more dramatic depth effect
-                    mouseX = (touchX - centerX) / centerX * 0.8;
-                    mouseY = (touchY - centerY) / centerY * 0.8;
+                    // Reduced sensitivity for slower, subtler touch parallax
+                    mouseX = (touchX - centerX) / centerX * 0.4;
+                    mouseY = (touchY - centerY) / centerY * 0.4;
                 }
             }, { passive: true });
             
