@@ -935,23 +935,45 @@
                     // Calculate scroll progress through the section
                     const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
                     const normalizedProgress = Math.max(0, Math.min(1, scrollProgress));
-                    
-                    // Define animation phases based on scroll progress
-                    if (normalizedProgress >= 0.1 && normalizedProgress < 0.3) {
-                        // Phase 1: Button zoom in
-                        section.classList.add('button-zoom-in');
-                    } else if (normalizedProgress >= 0.3 && normalizedProgress < 0.5) {
-                        // Phase 2: Button zoom out (no special class, returns to default)
-                        // This is handled by the absence of zoom classes
-                    } else if (normalizedProgress >= 0.5 && normalizedProgress < 0.7) {
-                        // Phase 3: Details zoom in
-                        section.classList.add('details-zoom-in');
-                    } else if (normalizedProgress >= 0.7 && normalizedProgress < 0.9) {
-                        // Phase 4: Details zoom out (no special class, returns to default)
-                        // This is handled by the absence of zoom classes
-                    } else if (normalizedProgress >= 0.9) {
-                        // Phase 5: Both at normal size (active state)
-                        section.classList.add('active');
+
+                    // Mobile-specific behavior: make button and details come into focus roughly together
+                    if (window.innerWidth <= 768) {
+                        // On mobile, compress the phases so both elements zoom near the same time
+                        if (normalizedProgress >= 0.08 && normalizedProgress < 0.45) {
+                            // Both begin to emphasize (button zoom in)
+                            section.classList.add('button-zoom-in');
+                        }
+
+                        // Details become prominent slightly after center passes middle of viewport
+                        // We'll check the section center position relative to viewport middle
+                        const viewportMiddle = windowHeight / 2;
+                        if (sectionCenter < viewportMiddle) {
+                            // Section has passed the middle - prioritize details
+                            section.classList.add('details-zoom-in');
+                        }
+
+                        // Active state when mostly in view
+                        if (normalizedProgress >= 0.85) {
+                            section.classList.add('active');
+                        }
+                    } else {
+                        // Desktop/original behavior
+                        if (normalizedProgress >= 0.1 && normalizedProgress < 0.3) {
+                            // Phase 1: Button zoom in
+                            section.classList.add('button-zoom-in');
+                        } else if (normalizedProgress >= 0.3 && normalizedProgress < 0.5) {
+                            // Phase 2: Button zoom out (no special class, returns to default)
+                            // This is handled by the absence of zoom classes
+                        } else if (normalizedProgress >= 0.5 && normalizedProgress < 0.7) {
+                            // Phase 3: Details zoom in
+                            section.classList.add('details-zoom-in');
+                        } else if (normalizedProgress >= 0.7 && normalizedProgress < 0.9) {
+                            // Phase 4: Details zoom out (no special class, returns to default)
+                            // This is handled by the absence of zoom classes
+                        } else if (normalizedProgress >= 0.9) {
+                            // Phase 5: Both at normal size (active state)
+                            section.classList.add('active');
+                        }
                     }
                 }
             });
