@@ -968,12 +968,19 @@
                             section.classList.add('button-zoom-in');
                         }
 
-                        // Details become prominent slightly after center passes middle of viewport
-                        // We'll check the section center position relative to viewport middle
-                        const viewportMiddle = windowHeight / 2;
-                        if (sectionCenter < viewportMiddle) {
-                            // Section has passed the middle - prioritize details
-                            section.classList.add('details-zoom-in');
+                        // Find the details element and compute its center relative to viewport
+                        const detailsEl = section.querySelector('.position-details');
+                        if (detailsEl) {
+                            const dRect = detailsEl.getBoundingClientRect();
+                            const detailsCenter = dRect.top + dRect.height / 2;
+                            const viewportMiddle = windowHeight / 2;
+                            const distance = Math.abs(detailsCenter - viewportMiddle);
+                            // threshold: 15% of viewport height
+                            const threshold = windowHeight * 0.15;
+                            if (distance <= threshold) {
+                                // details are near the middle - trigger details focus
+                                section.classList.add('details-zoom-in');
+                            }
                         }
 
                         // Active state when mostly in view
