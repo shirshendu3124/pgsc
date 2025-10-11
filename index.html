@@ -539,6 +539,17 @@
             .scroll-animation-section.active .button-flip-inner {
                 transform: rotateY(180deg) !important;
             }
+
+            /* Mobile: When button flips, keep both button and details focused */
+            .scroll-animation-section.button-zoom-in.details-zoom-in .position-button-container {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            .scroll-animation-section.button-zoom-in.details-zoom-in .position-details {
+                transform: scale(1.05);
+                opacity: 1;
+            }
         }
 
         /* Front and back sides of the button */
@@ -1319,8 +1330,9 @@
                                 bottomDistance >= bottomThreshold &&
                                 normalizedProgress >= 0.35 && 
                                 normalizedProgress <= 0.65) {
-                                // Button is in good position - trigger flip
+                                // Button is in good position - trigger flip AND keep details focused
                                 section.classList.add('button-zoom-in');
+                                section.classList.add('details-zoom-in'); // Keep details focused when button flips
                             }
                         }
                         
