@@ -481,11 +481,17 @@
             transform-style: preserve-3d;
         }
 
-        /* Flip the button when section is focused */
+        /* Flip the button ONLY when section is focused during scroll - not on hover */
         .scroll-animation-section.button-zoom-in .button-flip-inner,
         .scroll-animation-section.details-zoom-in .button-flip-inner,
         .scroll-animation-section.active .button-flip-inner {
             transform: rotateY(180deg);
+        }
+
+        /* Ensure hover doesn't interfere with flip state */
+        .button-flip-inner {
+            /* Default state - no flip */
+            transform: rotateY(0deg);
         }
 
         /* Front and back sides of the button */
@@ -538,7 +544,7 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
-        /* Hover effects */
+        /* Hover effects - only visual changes, no transforms that affect flip */
         .button-front:hover {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
@@ -560,9 +566,13 @@
                 0 0 30px rgba(100, 181, 246, 0.5);
         }
 
-        /* Active states */
-        .button-front:active, .button-back:active {
+        /* Active states - only affect individual button, not the flip container */
+        .button-front:active {
             transform: scale(0.98);
+        }
+
+        .button-back:active {
+            transform: scale(0.98) rotateY(180deg); /* Maintain the flip during active state */
         }
 
         /* Position details with iOS-style glass */
