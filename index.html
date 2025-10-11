@@ -465,6 +465,63 @@
             display: block;
         }
 
+        /* Apply button styling */
+        .apply-button {
+            width: 100%;
+            padding: 15px 30px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, 
+                rgba(100, 181, 246, 0.8) 0%,
+                rgba(64, 162, 255, 0.9) 50%,
+                rgba(30, 136, 229, 0.8) 100%);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border: 1px solid rgba(100, 181, 246, 0.6);
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 
+                0 8px 32px rgba(100, 181, 246, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+
+        .apply-button:hover {
+            background: linear-gradient(135deg, 
+                rgba(100, 181, 246, 0.9) 0%,
+                rgba(64, 162, 255, 1.0) 50%,
+                rgba(30, 136, 229, 0.9) 100%);
+            border-color: rgba(100, 181, 246, 0.8);
+            box-shadow: 
+                0 12px 40px rgba(100, 181, 246, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 0 30px rgba(100, 181, 246, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .apply-button:active {
+            transform: scale(0.98) translateY(-2px);
+        }
+
+        /* Show apply button when section is focused */
+        .scroll-animation-section.button-zoom-in .apply-button,
+        .scroll-animation-section.details-zoom-in .apply-button,
+        .scroll-animation-section.active .apply-button {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
         /* Position details with iOS-style glass */
         .position-details {
             flex: 1;
@@ -820,6 +877,9 @@
                         <li>Address academic grievances and concerns</li>
                         <li>Promote interdisciplinary research initiatives</li>
                     </ul>
+                    <a href="#" class="apply-button" data-position="academic" target="_blank">
+                        Apply for Academic & Research Secretary
+                    </a>
                 </div>
             </div>
 
@@ -841,6 +901,9 @@
                         <li>Promote innovation labs and maker spaces</li>
                         <li>Support patent filing and intellectual property initiatives</li>
                     </ul>
+                    <a href="#" class="apply-button" data-position="technology" target="_blank">
+                        Apply for Technology & Innovation Secretary
+                    </a>
                 </div>
             </div>
 
@@ -862,6 +925,9 @@
                         <li>Design promotional materials and communications</li>
                         <li>Maintain transparency through regular reporting</li>
                     </ul>
+                    <a href="#" class="apply-button" data-position="media" target="_blank">
+                        Apply for Media & Communications Secretary
+                    </a>
                 </div>
             </div>
 
@@ -883,6 +949,9 @@
                         <li>Facilitate communication with institute administration</li>
                         <li>Monitor and evaluate council performance and initiatives</li>
                     </ul>
+                    <a href="#" class="apply-button" data-position="strategy" target="_blank">
+                        Apply for Coordination & Strategy Secretary
+                    </a>
                 </div>
             </div>
         </section>
@@ -911,6 +980,31 @@
                 document.querySelectorAll('.glass-button').forEach(btn => btn.classList.remove('active'));
                 // Add active class to clicked button
                 this.classList.add('active');
+            });
+        });
+
+        // Google Forms URLs for each secretary position
+        const googleFormUrls = {
+            'academic': 'https://forms.gle/mvQhgfhQUUXPFr7f9',
+            'technology': 'https://forms.gle/gMMXfHRpJS19kqB4A',
+            'media': 'https://forms.gle/w4jQRsAvjJ58TMVo7',
+            'strategy': 'https://forms.gle/2WCvHLQ6GfN4DaT96'
+        };
+
+        // Apply button functionality
+        document.querySelectorAll('.apply-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const position = this.dataset.position;
+                const url = googleFormUrls[position];
+                
+                if (url && url !== 'https://forms.gle/YOUR_' + position.toUpperCase() + '_FORM_ID_HERE') {
+                    // Open Google Form in new tab
+                    window.open(url, '_blank');
+                } else {
+                    // Show alert if URL not configured yet
+                    alert(`Google Form URL for ${position} secretary position is not configured yet. Please contact the administrator.`);
+                }
             });
         });
 
