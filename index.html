@@ -605,25 +605,48 @@
         .scroll-animation-section.button-zoom-in .position-button-container .button-front,
         .scroll-animation-section.details-zoom-in .position-details,
         .scroll-animation-section.details-zoom-in .position-button-container .button-front {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
             box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                0 0 20px rgba(100, 181, 246, 0.3);
-            transform: translateY(-2px);
+                0 0 20px rgba(100, 181, 246, 0.3) !important;
         }
 
         /* When fully active, maintain the same enhanced styling as .pgsc-info hover */
         .scroll-animation-section.active .position-details,
         .scroll-animation-section.active .position-button-container .button-front {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
             box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                0 0 20px rgba(100, 181, 246, 0.3);
-            transform: translateY(-2px);
+                0 0 20px rgba(100, 181, 246, 0.3) !important;
+        }
+
+        /* Completely disable hover effects on button containers and flip elements */
+        .button-flip-container,
+        .button-flip-inner,
+        .button-flip-container *,
+        .button-flip-inner * {
+            pointer-events: none !important;
+        }
+
+        /* Re-enable pointer events only on the actual clickable buttons */
+        .button-front,
+        .button-back {
+            pointer-events: auto !important;
+        }
+
+        /* Remove ALL hover effects that might interfere with flip animation */
+        .scroll-animation-section .position-button-container:hover,
+        .scroll-animation-section .button-flip-container:hover,
+        .scroll-animation-section .button-flip-inner:hover,
+        .scroll-animation-section:hover .position-button-container {
+            transform: none !important;
+            background: inherit !important;
+            border-color: inherit !important;
+            box-shadow: inherit !important;
         }
 
 
@@ -1146,21 +1169,15 @@
                             section.classList.add('active');
                         }
                     } else {
-                        // Desktop/original behavior
-                        if (normalizedProgress >= 0.1 && normalizedProgress < 0.3) {
-                            // Phase 1: Button zoom in
+                        // Desktop behavior - improved phase detection
+                        if (normalizedProgress >= 0.05 && normalizedProgress < 0.35) {
+                            // Phase 1: Button zoom in (flip happens here)
                             section.classList.add('button-zoom-in');
-                        } else if (normalizedProgress >= 0.3 && normalizedProgress < 0.5) {
-                            // Phase 2: Button zoom out (no special class, returns to default)
-                            // This is handled by the absence of zoom classes
-                        } else if (normalizedProgress >= 0.5 && normalizedProgress < 0.7) {
-                            // Phase 3: Details zoom in
+                        } else if (normalizedProgress >= 0.35 && normalizedProgress < 0.65) {
+                            // Phase 2: Details zoom in  
                             section.classList.add('details-zoom-in');
-                        } else if (normalizedProgress >= 0.7 && normalizedProgress < 0.9) {
-                            // Phase 4: Details zoom out (no special class, returns to default)
-                            // This is handled by the absence of zoom classes
-                        } else if (normalizedProgress >= 0.9) {
-                            // Phase 5: Both at normal size (active state)
+                        } else if (normalizedProgress >= 0.65) {
+                            // Phase 3: Both at normal size (active state)
                             section.classList.add('active');
                         }
                     }
