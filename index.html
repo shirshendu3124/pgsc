@@ -481,17 +481,16 @@
             transform-style: preserve-3d;
         }
 
-        /* Flip the button ONLY when section is focused during scroll - not on hover */
+        /* Default state - buttons face front, NO flip */
+        .button-flip-inner {
+            transform: rotateY(0deg);
+        }
+
+        /* Flip the button ONLY when section is focused during scroll - not on hover or cursor */
         .scroll-animation-section.button-zoom-in .button-flip-inner,
         .scroll-animation-section.details-zoom-in .button-flip-inner,
         .scroll-animation-section.active .button-flip-inner {
-            transform: rotateY(180deg);
-        }
-
-        /* Ensure hover doesn't interfere with flip state */
-        .button-flip-inner {
-            /* Default state - no flip */
-            transform: rotateY(0deg);
+            transform: rotateY(180deg) !important;
         }
 
         /* Front and back sides of the button */
@@ -544,8 +543,8 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
-        /* Hover effects - only visual changes, no transforms that affect flip */
-        .button-front:hover {
+        /* Hover effects - NEVER change transform, only visual properties */
+        .button-flip-container:hover .button-front {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 
@@ -554,7 +553,7 @@
                 0 0 20px rgba(100, 181, 246, 0.3);
         }
 
-        .button-back:hover {
+        .button-flip-container:hover .button-back {
             background: linear-gradient(135deg, 
                 rgba(100, 181, 246, 0.9) 0%,
                 rgba(64, 162, 255, 1.0) 50%,
@@ -564,6 +563,12 @@
                 0 12px 40px rgba(100, 181, 246, 0.6),
                 inset 0 1px 0 rgba(255, 255, 255, 0.4),
                 0 0 30px rgba(100, 181, 246, 0.5);
+        }
+
+        /* Explicitly prevent transforms on individual button elements during hover */
+        .button-front:hover,
+        .button-back:hover {
+            transform: none;
         }
 
         /* Active states - only affect individual button, not the flip container */
