@@ -1001,17 +1001,20 @@
 
             .position-row {
                 flex-direction: column;
-                gap: 20px;
+                gap: 30px;
+                margin-bottom: 60px; /* Increase spacing between sections */
             }
 
             /* On mobile, show the details above the button for better reading flow */
             .position-details {
                 order: -1; /* Place details before the button container */
+                margin-bottom: 20px; /* Add space between details and button */
             }
 
             .position-button-container {
                 flex: none;
                 width: 100%;
+                margin-top: 20px; /* Ensure separation from details */
             }
 
             .contact-grid {
@@ -1275,40 +1278,31 @@
                     const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
                     const normalizedProgress = Math.max(0, Math.min(1, scrollProgress));
 
-                    // Mobile-specific behavior: make button and details come into focus roughly together
+                    // Mobile-specific behavior: details first, then button in center triggers flip
                     if (window.innerWidth <= 768) {
-                        // On mobile, compress the phases so both elements zoom near the same time
-                        if (normalizedProgress >= 0.08 && normalizedProgress < 0.45) {
-                            // Both begin to emphasize (button zoom in)
-                            section.classList.add('button-zoom-in');
+                        // Phase 1: Details focus first
+                        if (normalizedProgress >= 0.05 && normalizedProgress < 0.4) {
+                            section.classList.add('details-zoom-in');
                         }
-
-                        // Find the details element and compute its center relative to viewport
-                        const detailsEl = section.querySelector('.position-details');
-                        if (detailsEl) {
-                            const dRect = detailsEl.getBoundingClientRect();
-                            const detailsCenter = dRect.top + dRect.height / 2;
+                        
+                        // Phase 2: Check if button is near center of viewport for flip
+                        const buttonEl = section.querySelector('.position-button-container');
+                        if (buttonEl) {
+                            const bRect = buttonEl.getBoundingClientRect();
+                            const buttonCenter = bRect.top + bRect.height / 2;
                             const viewportMiddle = windowHeight / 2;
-                            const distance = Math.abs(detailsCenter - viewportMiddle);
-                            // threshold: 30% of viewport height (move focus earlier on mobile)
-                            const threshold = windowHeight * 0.30;
+                            const distance = Math.abs(buttonCenter - viewportMiddle);
+                            // Threshold: 20% of viewport height for button center detection
+                            const buttonThreshold = windowHeight * 0.20;
 
-                            if (distance <= threshold) {
-                                // details are near the middle - trigger both button and details focus together
-                                section.classList.add('button-zoom-in', 'details-zoom-in');
-                            } else if (normalizedProgress >= 0.08 && normalizedProgress < 0.45) {
-                                // fallback: emphasize button during the phase window
-                                section.classList.add('button-zoom-in');
-                            }
-                        } else {
-                            // If no details element found, fallback to normalized progress for button emphasis
-                            if (normalizedProgress >= 0.08 && normalizedProgress < 0.45) {
+                            if (distance <= buttonThreshold) {
+                                // Button is in center - trigger button focus AND flip
                                 section.classList.add('button-zoom-in');
                             }
                         }
-
-                        // Active state when mostly in view
-                        if (normalizedProgress >= 0.85) {
+                        
+                        // Phase 3: Active state when button is well positioned
+                        if (normalizedProgress >= 0.7) {
                             section.classList.add('active');
                         }
                     } else {
