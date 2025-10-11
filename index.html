@@ -502,6 +502,28 @@
             display: block;
         }
 
+        /* Rainbow text effect for Apply button */
+        .button-back .button-text {
+            background: linear-gradient(90deg, 
+                #ff0000, #ff4500, #ffa500, #ffff00, 
+                #9aff9a, #00ffff, #0080ff, #8a2be2, 
+                #ff1493, #ff0000);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowFlowContinuous 3s ease-in-out infinite;
+        }
+
+        @keyframes rainbowFlowContinuous {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
         /* Button flip animation container - NO HOVER INTERACTIONS */
         .button-flip-container {
             width: 100%;
@@ -591,13 +613,10 @@
 
         /* Back side (Apply button) */
         .button-back {
-            background: linear-gradient(135deg, 
-                rgba(100, 181, 246, 0.8) 0%,
-                rgba(64, 162, 255, 0.9) 50%,
-                rgba(30, 136, 229, 0.8) 100%);
+            background: rgba(255, 255, 255, 0.2); /* Same style as secretary but less transparency */
             backdrop-filter: blur(20px) saturate(1.8);
             -webkit-backdrop-filter: blur(20px) saturate(1.8);
-            border: 1px solid rgba(100, 181, 246, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             transform: rotateY(180deg); /* Explicit back facing */
             display: flex;
@@ -605,7 +624,7 @@
             justify-content: center;
             align-items: center;
             box-shadow: 
-                0 8px 32px rgba(100, 181, 246, 0.4),
+                0 8px 32px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
@@ -620,15 +639,12 @@
         }
 
         .button-back:hover {
-            background: linear-gradient(135deg, 
-                rgba(100, 181, 246, 0.9) 0%,
-                rgba(64, 162, 255, 1.0) 50%,
-                rgba(30, 136, 229, 0.9) 100%);
-            border-color: rgba(100, 181, 246, 0.8);
+            background: rgba(255, 255, 255, 0.25); /* Match secretary button hover with less transparency */
+            border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 
-                0 12px 40px rgba(100, 181, 246, 0.6),
+                0 12px 40px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                0 0 30px rgba(100, 181, 246, 0.5);
+                0 0 20px rgba(100, 181, 246, 0.3);
         }
 
         /* Active states - only affect individual button, not the flip container */
