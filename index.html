@@ -1001,20 +1001,22 @@
 
             .position-row {
                 flex-direction: column;
-                gap: 30px;
-                margin-bottom: 60px; /* Increase spacing between sections */
+                gap: 40px;
+                margin-bottom: 100px; /* Much larger spacing between sections to prevent overlap */
+                padding-bottom: 40px; /* Additional padding at bottom of each section */
             }
 
             /* On mobile, show the details above the button for better reading flow */
             .position-details {
                 order: -1; /* Place details before the button container */
-                margin-bottom: 20px; /* Add space between details and button */
+                margin-bottom: 30px; /* More space between details and button */
             }
 
             .position-button-container {
                 flex: none;
                 width: 100%;
-                margin-top: 20px; /* Ensure separation from details */
+                margin-top: 30px; /* More separation from details */
+                margin-bottom: 40px; /* Space before next section */
             }
 
             .contact-grid {
@@ -1281,28 +1283,36 @@
                     // Mobile-specific behavior: details first, then button in center triggers flip
                     if (window.innerWidth <= 768) {
                         // Phase 1: Details focus first
-                        if (normalizedProgress >= 0.05 && normalizedProgress < 0.4) {
+                        if (normalizedProgress >= 0.05 && normalizedProgress < 0.35) {
                             section.classList.add('details-zoom-in');
                         }
                         
-                        // Phase 2: Check if button is near center of viewport for flip
+                        // Phase 2: Check if button is in a good position for flip (not too close to next section)
                         const buttonEl = section.querySelector('.position-button-container');
                         if (buttonEl) {
                             const bRect = buttonEl.getBoundingClientRect();
                             const buttonCenter = bRect.top + bRect.height / 2;
+                            const buttonBottom = bRect.bottom;
                             const viewportMiddle = windowHeight / 2;
-                            const distance = Math.abs(buttonCenter - viewportMiddle);
-                            // Threshold: 20% of viewport height for button center detection
-                            const buttonThreshold = windowHeight * 0.20;
+                            const viewportBottom = windowHeight;
+                            
+                            // Only flip if button center is near viewport center AND button isn't too close to bottom
+                            const centerDistance = Math.abs(buttonCenter - viewportMiddle);
+                            const bottomDistance = viewportBottom - buttonBottom;
+                            const centerThreshold = windowHeight * 0.25;
+                            const bottomThreshold = windowHeight * 0.3; // Ensure enough space below
 
-                            if (distance <= buttonThreshold) {
-                                // Button is in center - trigger button focus AND flip
+                            if (centerDistance <= centerThreshold && 
+                                bottomDistance >= bottomThreshold &&
+                                normalizedProgress >= 0.35 && 
+                                normalizedProgress <= 0.65) {
+                                // Button is in good position - trigger flip
                                 section.classList.add('button-zoom-in');
                             }
                         }
                         
-                        // Phase 3: Active state when button is well positioned
-                        if (normalizedProgress >= 0.7) {
+                        // Phase 3: Active state only when section is fully in view and positioned well
+                        if (normalizedProgress >= 0.65 && normalizedProgress <= 0.85) {
                             section.classList.add('active');
                         }
                     } else {
