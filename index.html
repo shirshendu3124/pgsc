@@ -465,11 +465,11 @@
             display: block;
         }
 
-        /* Apply button styling */
-        .apply-button {
+        /* Apply button styling - positioned under secretary buttons */
+        .position-button-container .apply-button {
             width: 100%;
-            padding: 15px 30px;
-            margin-top: 20px;
+            padding: 12px 20px;
+            margin-top: 15px;
             background: linear-gradient(135deg, 
                 rgba(100, 181, 246, 0.8) 0%,
                 rgba(64, 162, 255, 0.9) 50%,
@@ -479,11 +479,11 @@
             border: 1px solid rgba(100, 181, 246, 0.6);
             border-radius: 15px;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1.0rem;
             font-weight: 600;
             text-decoration: none;
             text-align: center;
-            display: inline-block;
+            display: block;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: 
@@ -492,11 +492,11 @@
             position: relative;
             overflow: hidden;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(15px);
             pointer-events: none;
         }
 
-        .apply-button:hover {
+        .position-button-container .apply-button:hover {
             background: linear-gradient(135deg, 
                 rgba(100, 181, 246, 0.9) 0%,
                 rgba(64, 162, 255, 1.0) 50%,
@@ -509,14 +509,14 @@
             transform: translateY(-2px);
         }
 
-        .apply-button:active {
+        .position-button-container .apply-button:active {
             transform: scale(0.98) translateY(-2px);
         }
 
-        /* Show apply button when section is focused */
-        .scroll-animation-section.button-zoom-in .apply-button,
-        .scroll-animation-section.details-zoom-in .apply-button,
-        .scroll-animation-section.active .apply-button {
+        /* Show apply button when section is focused - target buttons in position-button-container */
+        .scroll-animation-section.button-zoom-in .position-button-container .apply-button,
+        .scroll-animation-section.details-zoom-in .position-button-container .apply-button,
+        .scroll-animation-section.active .position-button-container .apply-button {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
@@ -866,6 +866,9 @@
                         <span class="button-text">Secretary</span>
                         <span class="button-subtitle">Academic and Research</span>
                     </button>
+                    <a href="#" class="apply-button" data-position="academic" target="_blank">
+                        Apply for Academic & Research Secretary
+                    </a>
                 </div>
                 <div class="position-details" id="academic-details">
                     <h3>Secretary (Academic and Research)</h3>
@@ -877,9 +880,6 @@
                         <li>Address academic grievances and concerns</li>
                         <li>Promote interdisciplinary research initiatives</li>
                     </ul>
-                    <a href="#" class="apply-button" data-position="academic" target="_blank">
-                        Apply for Academic & Research Secretary
-                    </a>
                 </div>
             </div>
 
@@ -890,6 +890,9 @@
                         <span class="button-text">Secretary</span>
                         <span class="button-subtitle">Technology and Innovation</span>
                     </button>
+                    <a href="#" class="apply-button" data-position="technology" target="_blank">
+                        Apply for Technology & Innovation Secretary
+                    </a>
                 </div>
                 <div class="position-details" id="technology-details">
                     <h3>Secretary (Technology and Innovation)</h3>
@@ -901,9 +904,6 @@
                         <li>Promote innovation labs and maker spaces</li>
                         <li>Support patent filing and intellectual property initiatives</li>
                     </ul>
-                    <a href="#" class="apply-button" data-position="technology" target="_blank">
-                        Apply for Technology & Innovation Secretary
-                    </a>
                 </div>
             </div>
 
@@ -914,6 +914,9 @@
                         <span class="button-text">Secretary</span>
                         <span class="button-subtitle">Media and Communications</span>
                     </button>
+                    <a href="#" class="apply-button" data-position="media" target="_blank">
+                        Apply for Media & Communications Secretary
+                    </a>
                 </div>
                 <div class="position-details" id="media-details">
                     <h3>Secretary (Media and Communications)</h3>
@@ -925,9 +928,6 @@
                         <li>Design promotional materials and communications</li>
                         <li>Maintain transparency through regular reporting</li>
                     </ul>
-                    <a href="#" class="apply-button" data-position="media" target="_blank">
-                        Apply for Media & Communications Secretary
-                    </a>
                 </div>
             </div>
 
@@ -938,6 +938,9 @@
                         <span class="button-text">Secretary</span>
                         <span class="button-subtitle">Coordination and Strategy</span>
                     </button>
+                    <a href="#" class="apply-button" data-position="strategy" target="_blank">
+                        Apply for Coordination & Strategy Secretary
+                    </a>
                 </div>
                 <div class="position-details" id="strategy-details">
                     <h3>Secretary (Coordination and Strategy)</h3>
@@ -949,9 +952,6 @@
                         <li>Facilitate communication with institute administration</li>
                         <li>Monitor and evaluate council performance and initiatives</li>
                     </ul>
-                    <a href="#" class="apply-button" data-position="strategy" target="_blank">
-                        Apply for Coordination & Strategy Secretary
-                    </a>
                 </div>
             </div>
         </section>
