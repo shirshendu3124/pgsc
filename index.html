@@ -280,6 +280,26 @@
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
+        .pgsc-info::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.15) 0%, 
+                rgba(0, 0, 0, 0.08) 50%, 
+                rgba(0, 0, 0, 0.15) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .pgsc-info > * {
+            position: relative;
+            z-index: 2;
+        }
+
         .pgsc-info:hover {
             border-color: rgba(100, 181, 246, 0.6);
             box-shadow: 
@@ -673,6 +693,26 @@
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
+        .position-details::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.12) 0%, 
+                rgba(0, 0, 0, 0.06) 50%, 
+                rgba(0, 0, 0, 0.12) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .position-details > * {
+            position: relative;
+            z-index: 2;
+        }
+
         .position-details:hover {
             border-color: rgba(100, 181, 246, 0.6);
             box-shadow: 
@@ -890,6 +930,26 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .contact-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.1) 0%, 
+                rgba(0, 0, 0, 0.05) 50%, 
+                rgba(0, 0, 0, 0.1) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .contact-item > * {
+            position: relative;
+            z-index: 2;
         }
 
         .contact-item:hover {
