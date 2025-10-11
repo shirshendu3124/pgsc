@@ -484,11 +484,19 @@
             pointer-events: none; /* Disable all pointer interactions on inner container */
         }
 
-        /* Flip the button ONLY when section is focused during scroll */
-        .scroll-animation-section.button-zoom-in .button-flip-inner,
+        /* Desktop: Flip when details are in focus OR active */
         .scroll-animation-section.details-zoom-in .button-flip-inner,
         .scroll-animation-section.active .button-flip-inner {
             transform: rotateY(180deg) !important;
+        }
+
+        /* Mobile: Flip when button is in focus OR details/active (responsive behavior) */
+        @media (max-width: 768px) {
+            .scroll-animation-section.button-zoom-in .button-flip-inner,
+            .scroll-animation-section.details-zoom-in .button-flip-inner,
+            .scroll-animation-section.active .button-flip-inner {
+                transform: rotateY(180deg) !important;
+            }
         }
 
         /* Front and back sides of the button */
