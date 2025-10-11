@@ -465,11 +465,61 @@
             display: block;
         }
 
-        /* Apply button styling - positioned under secretary buttons */
-        .position-button-container .apply-button {
+        /* Button flip animation container */
+        .button-flip-container {
             width: 100%;
-            padding: 12px 20px;
-            margin-top: 15px;
+            height: 120px;
+            perspective: 1000px;
+        }
+
+        .button-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-style: preserve-3d;
+        }
+
+        /* Flip the button when section is focused */
+        .scroll-animation-section.button-zoom-in .button-flip-inner,
+        .scroll-animation-section.details-zoom-in .button-flip-inner,
+        .scroll-animation-section.active .button-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and back sides of the button */
+        .button-front, .button-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+        }
+
+        /* Front side (Secretary button) */
+        .button-front {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        /* Back side (Apply button) */
+        .button-back {
             background: linear-gradient(135deg, 
                 rgba(100, 181, 246, 0.8) 0%,
                 rgba(64, 162, 255, 0.9) 50%,
@@ -477,26 +527,28 @@
             backdrop-filter: blur(20px) saturate(1.8);
             -webkit-backdrop-filter: blur(20px) saturate(1.8);
             border: 1px solid rgba(100, 181, 246, 0.6);
-            border-radius: 15px;
             color: white;
-            font-size: 1.0rem;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            display: block;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             box-shadow: 
                 0 8px 32px rgba(100, 181, 246, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(15px);
-            pointer-events: none;
         }
 
-        .position-button-container .apply-button:hover {
+        /* Hover effects */
+        .button-front:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .button-back:hover {
             background: linear-gradient(135deg, 
                 rgba(100, 181, 246, 0.9) 0%,
                 rgba(64, 162, 255, 1.0) 50%,
@@ -506,20 +558,11 @@
                 0 12px 40px rgba(100, 181, 246, 0.6),
                 inset 0 1px 0 rgba(255, 255, 255, 0.4),
                 0 0 30px rgba(100, 181, 246, 0.5);
-            transform: translateY(-2px);
         }
 
-        .position-button-container .apply-button:active {
-            transform: scale(0.98) translateY(-2px);
-        }
-
-        /* Show apply button when section is focused - target buttons in position-button-container */
-        .scroll-animation-section.button-zoom-in .position-button-container .apply-button,
-        .scroll-animation-section.details-zoom-in .position-button-container .apply-button,
-        .scroll-animation-section.active .position-button-container .apply-button {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+        /* Active states */
+        .button-front:active, .button-back:active {
+            transform: scale(0.98);
         }
 
         /* Position details with iOS-style glass */
@@ -551,9 +594,9 @@
 
         /* Focus/active visual parity - same as .pgsc-info hover styling */
         .scroll-animation-section.button-zoom-in .position-details,
-        .scroll-animation-section.button-zoom-in .position-button-container .glass-button,
+        .scroll-animation-section.button-zoom-in .position-button-container .button-front,
         .scroll-animation-section.details-zoom-in .position-details,
-        .scroll-animation-section.details-zoom-in .position-button-container .glass-button {
+        .scroll-animation-section.details-zoom-in .position-button-container .button-front {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 
@@ -565,7 +608,7 @@
 
         /* When fully active, maintain the same enhanced styling as .pgsc-info hover */
         .scroll-animation-section.active .position-details,
-        .scroll-animation-section.active .position-button-container .glass-button {
+        .scroll-animation-section.active .position-button-container .button-front {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 
@@ -862,13 +905,20 @@
             <!-- Secretary 1: Academic and Research -->
             <div class="position-row scroll-animation-section" data-section="1">
                 <div class="position-button-container">
-                    <button class="glass-button" data-position="academic">
-                        <span class="button-text">Secretary</span>
-                        <span class="button-subtitle">Academic and Research</span>
-                    </button>
-                    <a href="#" class="apply-button" data-position="academic" target="_blank">
-                        Apply for Academic & Research Secretary
-                    </a>
+                    <div class="button-flip-container">
+                        <div class="button-flip-inner">
+                            <!-- Front side - Secretary Button -->
+                            <button class="glass-button button-front" data-position="academic">
+                                <span class="button-text">Secretary</span>
+                                <span class="button-subtitle">Academic and Research</span>
+                            </button>
+                            <!-- Back side - Apply Button -->
+                            <a href="#" class="glass-button button-back apply-button" data-position="academic" target="_blank">
+                                <span class="button-text">Apply Now</span>
+                                <span class="button-subtitle">Academic & Research Secretary</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="position-details" id="academic-details">
                     <h3>Secretary (Academic and Research)</h3>
@@ -886,13 +936,20 @@
             <!-- Secretary 2: Technology and Innovation -->
             <div class="position-row scroll-animation-section" data-section="2">
                 <div class="position-button-container">
-                    <button class="glass-button" data-position="technology">
-                        <span class="button-text">Secretary</span>
-                        <span class="button-subtitle">Technology and Innovation</span>
-                    </button>
-                    <a href="#" class="apply-button" data-position="technology" target="_blank">
-                        Apply for Technology & Innovation Secretary
-                    </a>
+                    <div class="button-flip-container">
+                        <div class="button-flip-inner">
+                            <!-- Front side - Secretary Button -->
+                            <button class="glass-button button-front" data-position="technology">
+                                <span class="button-text">Secretary</span>
+                                <span class="button-subtitle">Technology and Innovation</span>
+                            </button>
+                            <!-- Back side - Apply Button -->
+                            <a href="#" class="glass-button button-back apply-button" data-position="technology" target="_blank">
+                                <span class="button-text">Apply Now</span>
+                                <span class="button-subtitle">Technology & Innovation Secretary</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="position-details" id="technology-details">
                     <h3>Secretary (Technology and Innovation)</h3>
@@ -910,13 +967,20 @@
             <!-- Secretary 3: Media and Communications -->
             <div class="position-row scroll-animation-section" data-section="3">
                 <div class="position-button-container">
-                    <button class="glass-button" data-position="media">
-                        <span class="button-text">Secretary</span>
-                        <span class="button-subtitle">Media and Communications</span>
-                    </button>
-                    <a href="#" class="apply-button" data-position="media" target="_blank">
-                        Apply for Media & Communications Secretary
-                    </a>
+                    <div class="button-flip-container">
+                        <div class="button-flip-inner">
+                            <!-- Front side - Secretary Button -->
+                            <button class="glass-button button-front" data-position="media">
+                                <span class="button-text">Secretary</span>
+                                <span class="button-subtitle">Media and Communications</span>
+                            </button>
+                            <!-- Back side - Apply Button -->
+                            <a href="#" class="glass-button button-back apply-button" data-position="media" target="_blank">
+                                <span class="button-text">Apply Now</span>
+                                <span class="button-subtitle">Media & Communications Secretary</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="position-details" id="media-details">
                     <h3>Secretary (Media and Communications)</h3>
@@ -934,13 +998,20 @@
             <!-- Secretary 4: Coordination and Strategy -->
             <div class="position-row scroll-animation-section" data-section="4">
                 <div class="position-button-container">
-                    <button class="glass-button" data-position="strategy">
-                        <span class="button-text">Secretary</span>
-                        <span class="button-subtitle">Coordination and Strategy</span>
-                    </button>
-                    <a href="#" class="apply-button" data-position="strategy" target="_blank">
-                        Apply for Coordination & Strategy Secretary
-                    </a>
+                    <div class="button-flip-container">
+                        <div class="button-flip-inner">
+                            <!-- Front side - Secretary Button -->
+                            <button class="glass-button button-front" data-position="strategy">
+                                <span class="button-text">Secretary</span>
+                                <span class="button-subtitle">Coordination and Strategy</span>
+                            </button>
+                            <!-- Back side - Apply Button -->
+                            <a href="#" class="glass-button button-back apply-button" data-position="strategy" target="_blank">
+                                <span class="button-text">Apply Now</span>
+                                <span class="button-subtitle">Coordination & Strategy Secretary</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="position-details" id="strategy-details">
                     <h3>Secretary (Coordination and Strategy)</h3>
@@ -991,8 +1062,8 @@
             'strategy': 'https://forms.gle/2WCvHLQ6GfN4DaT96'
         };
 
-        // Apply button functionality
-        document.querySelectorAll('.apply-button').forEach(button => {
+        // Apply button functionality (now the flipped back side of buttons)
+        document.querySelectorAll('.button-back.apply-button').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 const position = this.dataset.position;
