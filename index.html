@@ -281,13 +281,48 @@
         }
 
         .pgsc-info:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(100, 181, 246, 0.6);
             box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                0 0 20px rgba(100, 181, 246, 0.3);
+                0 0 0 2px rgba(100, 181, 246, 0.4),
+                0 0 30px rgba(100, 181, 246, 0.2);
             transform: translateY(-2px);
+            position: relative;
+        }
+
+        .pgsc-info:hover::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 22px;
+            padding: 2px;
+            background: linear-gradient(45deg, 
+                rgba(100, 181, 246, 0.8), 
+                rgba(64, 162, 255, 0.6), 
+                rgba(30, 136, 229, 0.8), 
+                rgba(100, 181, 246, 0.8));
+            background-size: 300% 300%;
+            animation: borderGlow 2s ease-in-out infinite;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            z-index: -1;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { 
+                background-position: 0% 50%; 
+                opacity: 0.6;
+            }
+            50% { 
+                background-position: 100% 50%; 
+                opacity: 1;
+            }
         }
 
 
@@ -599,37 +634,113 @@
         }
 
         .position-details:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(100, 181, 246, 0.6);
             box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                0 0 20px rgba(100, 181, 246, 0.3);
+                0 0 0 2px rgba(100, 181, 246, 0.4),
+                0 0 30px rgba(100, 181, 246, 0.2);
             transform: translateY(-2px);
+            position: relative;
         }
 
-        /* Focus/active visual parity - same as .pgsc-info hover styling */
+        .position-details:hover::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 22px;
+            padding: 2px;
+            background: linear-gradient(45deg, 
+                rgba(100, 181, 246, 0.8), 
+                rgba(64, 162, 255, 0.6), 
+                rgba(30, 136, 229, 0.8), 
+                rgba(100, 181, 246, 0.8));
+            background-size: 300% 300%;
+            animation: borderGlow 2s ease-in-out infinite;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            z-index: -1;
+        }
+
+        /* Focus/active visual parity - border glow only */
         .scroll-animation-section.button-zoom-in .position-details,
         .scroll-animation-section.button-zoom-in .position-button-container .button-front,
         .scroll-animation-section.details-zoom-in .position-details,
         .scroll-animation-section.details-zoom-in .position-button-container .button-front {
-            background: rgba(255, 255, 255, 0.15) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
+            border-color: rgba(100, 181, 246, 0.6) !important;
             box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                0 0 20px rgba(100, 181, 246, 0.3) !important;
+                0 0 0 2px rgba(100, 181, 246, 0.4),
+                0 0 30px rgba(100, 181, 246, 0.2) !important;
+            position: relative;
         }
 
-        /* When fully active, maintain the same enhanced styling as .pgsc-info hover */
+        .scroll-animation-section.button-zoom-in .position-details::before,
+        .scroll-animation-section.button-zoom-in .position-button-container .button-front::before,
+        .scroll-animation-section.details-zoom-in .position-details::before,
+        .scroll-animation-section.details-zoom-in .position-button-container .button-front::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 22px;
+            padding: 2px;
+            background: linear-gradient(45deg, 
+                rgba(100, 181, 246, 0.8), 
+                rgba(64, 162, 255, 0.6), 
+                rgba(30, 136, 229, 0.8), 
+                rgba(100, 181, 246, 0.8));
+            background-size: 300% 300%;
+            animation: borderGlow 2s ease-in-out infinite;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            z-index: -1;
+        }
+
+        /* When fully active, maintain the same enhanced styling */
         .scroll-animation-section.active .position-details,
         .scroll-animation-section.active .position-button-container .button-front {
-            background: rgba(255, 255, 255, 0.15) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
+            border-color: rgba(100, 181, 246, 0.6) !important;
             box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                0 0 20px rgba(100, 181, 246, 0.3) !important;
+                0 0 0 2px rgba(100, 181, 246, 0.4),
+                0 0 30px rgba(100, 181, 246, 0.2) !important;
+            position: relative;
+        }
+
+        .scroll-animation-section.active .position-details::before,
+        .scroll-animation-section.active .position-button-container .button-front::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 22px;
+            padding: 2px;
+            background: linear-gradient(45deg, 
+                rgba(100, 181, 246, 0.8), 
+                rgba(64, 162, 255, 0.6), 
+                rgba(30, 136, 229, 0.8), 
+                rgba(100, 181, 246, 0.8));
+            background-size: 300% 300%;
+            animation: borderGlow 2s ease-in-out infinite;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            z-index: -1;
         }
 
         /* Completely disable hover effects on button containers and flip elements */
@@ -742,13 +853,37 @@
         }
 
         .contact-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(100, 181, 246, 0.6);
             box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                0 0 20px rgba(100, 181, 246, 0.3);
+                0 0 0 2px rgba(100, 181, 246, 0.4),
+                0 0 30px rgba(100, 181, 246, 0.2);
             transform: scale(1.05);
+            position: relative;
+        }
+
+        .contact-item:hover::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 22px;
+            padding: 2px;
+            background: linear-gradient(45deg, 
+                rgba(100, 181, 246, 0.8), 
+                rgba(64, 162, 255, 0.6), 
+                rgba(30, 136, 229, 0.8), 
+                rgba(100, 181, 246, 0.8));
+            background-size: 300% 300%;
+            animation: borderGlow 2s ease-in-out infinite;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            z-index: -1;
         }
 
         .contact-item strong {
