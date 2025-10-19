@@ -108,22 +108,6 @@
                 transform: translate3d(0, 0, 0);
                 -webkit-transform: translate3d(0, 0, 0);
             }
-
-                /* Make all white text fully white on mobile */
-                body, .button-text, .glass-button, .button-front, .button-back, .pgsc-info p, .secretary-positions h2 {
-                    color: #fff !important;
-                    text-shadow: none !important;
-                    opacity: 1 !important;
-                }
-                .button-text {
-                    -webkit-text-fill-color: #fff !important;
-                    text-fill-color: #fff !important;
-                }
-                .secretary-positions h2 {
-                    -webkit-text-fill-color: #fff !important;
-                    text-fill-color: #fff !important;
-                    background: none !important;
-                }
         }
 
 
@@ -290,12 +274,21 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 
                 0 8px 32px rgba(0, 0, 0, 0.3),
-            /* Make all white text fully white on mobile */
-            body, .button-text, .glass-button, .button-front, .button-back, .pgsc-info p {
-                color: #fff !important;
-                text-shadow: none !important;
-                opacity: 1 !important;
-            }
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .pgsc-info::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.15) 0%, 
                 rgba(0, 0, 0, 0.08) 50%, 
                 rgba(0, 0, 0, 0.15) 100%);
             pointer-events: none;
@@ -1390,8 +1383,8 @@
 
                     // Mobile-specific behavior: details first, then button in center triggers flip
                     if (window.innerWidth <= 768) {
-                        // Phase 1: Details focus first
-                        if (normalizedProgress >= 0.05 && normalizedProgress < 0.35) {
+                        // Phase 1: Details focus first (extended range)
+                        if (normalizedProgress >= 0.02 && normalizedProgress < 0.5) {
                             section.classList.add('details-zoom-in');
                         }
                         
@@ -1702,28 +1695,6 @@
                 parallaxBg.style.transform = 'translateZ(0)';
             }
         });
-    </script>
-
-    <!-- Keep button in focus until more than half is scrolled out (mobile) -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (window.innerWidth <= 768) {
-            const buttons = document.querySelectorAll('.position-button-container');
-            const options = {
-                threshold: [0, 0.5, 1]
-            };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.intersectionRatio > 0.5) {
-                        entry.target.classList.add('in-focus');
-                    } else {
-                        entry.target.classList.remove('in-focus');
-                    }
-                });
-            }, options);
-            buttons.forEach(btn => observer.observe(btn));
-        }
-    });
     </script>
 </body>
 </html>
