@@ -461,10 +461,10 @@
         .glass-button {
             width: 100%;
             height: 120px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(80px) saturate(3.0) hue-rotate(20deg) contrast(2.0) brightness(1.3) sepia(0.3);
-            -webkit-backdrop-filter: blur(80px) saturate(3.0) hue-rotate(20deg) contrast(2.0) brightness(1.3) sepia(0.3);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             color: white;
             cursor: pointer;
@@ -617,10 +617,10 @@
 
         /* Front side (Secretary button) */
         .button-front {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(90px) saturate(3.5) hue-rotate(25deg) contrast(2.2) brightness(1.4) sepia(0.4) invert(0.1);
-            -webkit-backdrop-filter: blur(90px) saturate(3.5) hue-rotate(25deg) contrast(2.2) brightness(1.4) sepia(0.4) invert(0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
             display: flex;
             flex-direction: column;
@@ -634,10 +634,10 @@
 
         /* Back side (Apply button) */
         .button-back {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(100px) saturate(4.0) hue-rotate(30deg) contrast(2.5) brightness(1.5) sepia(0.5) invert(0.15);
-            -webkit-backdrop-filter: blur(100px) saturate(4.0) hue-rotate(30deg) contrast(2.5) brightness(1.5) sepia(0.5) invert(0.15);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.2); /* Same style as secretary but less transparency */
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             transform: rotateY(180deg); /* Explicit back facing */
             display: flex;
@@ -680,12 +680,12 @@
         /* Position details with iOS-style glass */
         .position-details {
             flex: 1;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(85px) saturate(3.2) hue-rotate(22deg) contrast(2.1) brightness(1.35) sepia(0.35) invert(0.08);
-            -webkit-backdrop-filter: blur(85px) saturate(3.2) hue-rotate(22deg) contrast(2.1) brightness(1.35) sepia(0.35) invert(0.08);
+            background: rgba(255, 255, 255, 0.1); /* match pgsc-info default */
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
             padding: 30px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 
                 0 8px 32px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -1131,66 +1131,10 @@
             .pgsc-info h2 {
                 font-size: 2rem;
             }
-
-            /* Enhanced mobile text brightness - Position details only */
-            .position-details p,
-            .position-details li {
-                color: #ffffff !important;
-                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 255, 255, 0.3);
-                font-weight: 500;
-            }
-
-            .position-details h3 {
-                color: #ffffff !important;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 255, 255, 0.4);
-                font-weight: 700;
-            }
-
-            /* Enhanced glass backgrounds for mobile */
-            .position-details {
-                background: rgba(255, 255, 255, 0.15) !important;
-                border: 2px solid rgba(255, 255, 255, 0.3) !important;
-                box-shadow: 
-                    0 8px 32px rgba(0, 0, 0, 0.4),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                    0 0 20px rgba(0, 0, 0, 0.3) !important;
-            }
-
-            .glass-button {
-                background: rgba(255, 255, 255, 0.15) !important;
-                border: 2px solid rgba(255, 255, 255, 0.3) !important;
-                box-shadow: 
-                    0 8px 32px rgba(0, 0, 0, 0.4),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                    0 0 15px rgba(0, 0, 0, 0.3) !important;
-            }
-
-            .pgsc-info {
-                background: rgba(255, 255, 255, 0.15) !important;
-                border: 2px solid rgba(255, 255, 255, 0.3) !important;
-                box-shadow: 
-                    0 8px 32px rgba(0, 0, 0, 0.4),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                    0 0 20px rgba(0, 0, 0, 0.3) !important;
-            }
         }
     </style>
 </head>
 <body>
-    <svg width="0" height="0">
-        <filter id="ripple-distort" x="0%" y="0%" width="100%" height="100%">
-            <feTurbulence type="turbulence" baseFrequency="0.02 0.03" numOctaves="2" seed="2" result="turb"/>
-            <feDisplacementMap in2="turb" in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="G"/>
-        </filter>
-    </svg>
-    
-.glass-button,
-.button-front,
-.button-back,
-.position-details {
-    backdrop-filter: blur(80px) saturate(3.0) hue-rotate(20deg) contrast(2.0) brightness(1.3) sepia(0.3) url(#ripple-distort);
-    -webkit-backdrop-filter: blur(80px) saturate(3.0) hue-rotate(20deg) contrast(2.0) brightness(1.3) sepia(0.3) url(#ripple-distort);
-}
     <!-- 3D Parallax Background -->
     <div class="parallax-container" id="parallax-container">
         <div class="parallax-bg parallax-layer-1"></div>
